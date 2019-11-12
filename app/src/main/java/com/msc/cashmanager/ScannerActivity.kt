@@ -2,29 +2,23 @@ package com.msc.cashmanager
 
 import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Vibrator
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.zxing.Result
 import me.dm7.barcodescanner.zxing.ZXingScannerView
+import org.json.JSONObject
+import com.android.volley.RequestQueue
 import androidx.core.app.ComponentActivity
 import androidx.core.app.ComponentActivity.ExtraData
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import com.android.volley.VolleyError
-import org.json.JSONObject
-import com.android.volley.toolbox.JsonObjectRequest
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import androidx.lifecycle.ViewModel
-import com.android.volley.Request
-import com.android.volley.Response
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
+import android.util.Log
+import com.google.gson.Gson
 
 
 class ScannerActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
@@ -77,20 +71,37 @@ class ScannerActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
         val result: String? = p0?.text
         val vibrator = applicationContext.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
         vibrator.vibrate(1000)
-
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Result")
-        builder.setPositiveButton("ok") { dialog, which ->
-            scannerView?.resumeCameraPreview(this@ScannerActivity)
-            startActivity(intent)
-        }
-        builder.setMessage(result)
-        val alert: AlertDialog = builder.create()
-        alert.show()
-        val url = "https://api.upcitemdb.com/prod/trial/lookup?upc=" + result
-        APIWrapper().getRequest(url, this)
-        val response = APIWrapper().result
-        Log.d("DEBUG", response)
+        callToApi(result)
     }
 
+    fun callToApi(result: String?) {
+        val url = "https://api.upcitemdb.com/prod/trial/lookup?upc=" + result
+        val rq = APIWrapper()
+        rq.getRequest(url)
+        rq.requestQueue.addRequestFinishedListener(
+            RequestQueue.RequestFinishedListener<JSONObject>() {
+                fetchProduct(rq.result)
+            }
+        )
+    }
+
+    fun fetchProduct(result: String) {
+        val obj = JSONObject(result)
+        val productArray = obj.getJSONArray("items")
+        val product = Gson().fromJson(productArray[0].toString(), Product::class.java)
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Product scanned")
+        builder.setMessage(product.name + ": " + product.price.toString() + " €")
+        builder.setPositiveButton("Add to cart") { _, _ ->
+            val homeIntent = Intent(this, HomeActivity::class.java)
+            startActivity(homeIntent)
+            finish()
+        }
+        builder.setNegativeButton("Cancel") { dialog, _ ->
+            dialog.cancel()
+            scannerView?.resumeCameraPreview(this@ScannerActivity)
+        }
+        val alert: AlertDialog = builder.create()
+        alert.show()
+    }
 }

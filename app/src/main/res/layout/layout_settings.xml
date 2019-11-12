@@ -30,6 +30,14 @@
 
             <EditText
                 style="@style/modifiedEditText"
+                android:id="@+id/email"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:hint="Email"
+                android:layout_marginTop="@dimen/loginViewsMargin"/>
+
+            <EditText
+                style="@style/modifiedEditText"
                 android:id="@+id/password"
                 android:inputType="textPassword"
                 android:maxLines="1"

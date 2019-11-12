@@ -2,8 +2,10 @@ package com.msc.cashmanager
 
 import android.os.Parcel
 import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
 
-class Product(var name: String?, var price: Float) : Parcelable {
+class Product(@SerializedName("title") var name: String?,
+              @SerializedName("highest_recorded_price") var price: Float) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readFloat()

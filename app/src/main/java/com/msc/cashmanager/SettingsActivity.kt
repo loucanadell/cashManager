@@ -15,10 +15,12 @@ class SettingsActivity : AppCompatActivity() {
         val registerButton = findViewById<Button>(R.id.register);
         val ipAddress = findViewById<EditText>(R.id.ipAddress);
         val password = findViewById<EditText>(R.id.password);
+        val email = findViewById<EditText>(R.id.email);
 
         registerButton.setOnClickListener{
             if (ipAddress.text.toString().trim().isNotBlank() &&
-                password.text.toString().trim().isNotBlank()) {
+                password.text.toString().trim().isNotBlank() &&
+                email.text.toString().trim().isNotBlank()) {
                 val homeIntent = Intent(this, HomeActivity::class.java)
                 startActivity(homeIntent)
             }
