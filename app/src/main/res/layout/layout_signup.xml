@@ -17,15 +17,29 @@
 
         <TextView
             style="@style/headerTextPrimary"
-            android:text="@string/register"
+            android:text="SIGN UP"
             android:layout_marginTop="@dimen/loginViewsMargin"/>
 
             <EditText
                 style="@style/modifiedEditText"
-                android:id="@+id/ipAddress"
+                android:id="@+id/username"
                 android:inputType="text"
                 android:maxLines="1"
-                android:hint="IP Address"
+                android:hint="First name"
+                android:layout_marginTop="@dimen/loginViewsMargin"/>
+            <EditText
+                style="@style/modifiedEditText"
+                android:id="@+id/lastname"
+                android:inputType="text"
+                android:maxLines="1"
+                android:hint="Lastname"
+                android:layout_marginTop="@dimen/loginViewsMargin"/>
+            <EditText
+                style="@style/modifiedEditText"
+                android:id="@+id/address"
+                android:inputType="text"
+                android:maxLines="1"
+                android:hint="Residence address"
                 android:layout_marginTop="@dimen/loginViewsMargin"/>
 
             <EditText
@@ -43,14 +57,14 @@
                 android:maxLines="1"
                 android:hint="Password"
                 android:layout_marginTop="@dimen/loginViewsMargin"/>
+            <EditText
+                style="@style/modifiedEditText"
+                android:id="@+id/confirmPassword"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:hint="Confirm password"
+                android:layout_marginTop="@dimen/loginViewsMargin"/>
 
-        <Button
-            style="@style/loginButton"
-            android:id="@+id/register"
-            android:layout_gravity="center"
-            android:text="Register"
-            android:layout_marginTop="@dimen/loginViewsMargin"/>
-            />
         <Button
             style="@style/loginButton"
             android:id="@+id/signup"
