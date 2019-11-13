@@ -14,20 +14,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SettingsActivity">
+        <activity android:name=".activity.SettingsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".HomeActivity">
+        <activity android:name=".activity.HomeActivity">
         </activity>
-        <activity android:name=".CartActivity">
+        <activity android:name=".activity.CartActivity">
         </activity>
-        <activity android:name=".ScannerActivity">
+        <activity android:name=".activity.ScannerActivity">
         </activity>
-        <activity android:name=".SignUpActivity">
+        <activity android:name=".activity.SignUpActivity">
         </activity>
     </application>
 </manifest>

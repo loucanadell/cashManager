@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     style="@style/loginParent"
-    tools:context="com.msc.cashmanager.SettingsActivity">
+    tools:context="com.msc.cashmanager.activity.SettingsActivity">
 
         <RelativeLayout
             style="@style/parent">

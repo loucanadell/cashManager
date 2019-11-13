@@ -1,11 +1,11 @@
-package com.msc.cashmanager
+package com.msc.cashmanager.activity
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.ListView
-import android.widget.ArrayAdapter
-
+import com.msc.cashmanager.model.Product
+import com.msc.cashmanager.model.ProductAdapter
+import com.msc.cashmanager.R
 
 
 class CartActivity: AppCompatActivity() {

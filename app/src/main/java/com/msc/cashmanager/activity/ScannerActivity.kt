@@ -1,4 +1,4 @@
-package com.msc.cashmanager
+package com.msc.cashmanager.activity
 
 import android.app.AlertDialog
 import android.content.Context
@@ -13,12 +13,10 @@ import com.google.zxing.Result
 import me.dm7.barcodescanner.zxing.ZXingScannerView
 import org.json.JSONObject
 import com.android.volley.RequestQueue
-import androidx.core.app.ComponentActivity
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import android.util.Log
 import com.google.gson.Gson
+import com.msc.cashmanager.model.Product
+import com.msc.cashmanager.service.ProductService
+import kotlinx.android.synthetic.main.list_item.*
 
 
 class ScannerActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
@@ -76,7 +74,7 @@ class ScannerActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
 
     fun callToApi(result: String?) {
         val url = "https://api.upcitemdb.com/prod/trial/lookup?upc=" + result
-        val rq = APIWrapper()
+        val rq = ProductService()
         rq.getRequest(url)
         rq.requestQueue.addRequestFinishedListener(
             RequestQueue.RequestFinishedListener<JSONObject>() {
@@ -93,6 +91,9 @@ class ScannerActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
         builder.setTitle("Product scanned")
         builder.setMessage(product.name + ": " + product.price.toString() + " €")
         builder.setPositiveButton("Add to cart") { _, _ ->
+            val prod = Product(product.name, product.price)
+            val rq = ProductService()
+            rq.postRequest(prod)
             val homeIntent = Intent(this, HomeActivity::class.java)
             startActivity(homeIntent)
             finish()

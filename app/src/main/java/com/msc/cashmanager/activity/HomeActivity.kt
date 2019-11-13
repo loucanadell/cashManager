@@ -1,15 +1,12 @@
-package com.msc.cashmanager
+package com.msc.cashmanager.activity
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.msc.cashmanager.model.Product
+import com.msc.cashmanager.R
 import kotlinx.android.synthetic.main.activity_home.*
-import androidx.core.app.ComponentActivity
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import android.util.Log
 
 
 class HomeActivity: AppCompatActivity() {
