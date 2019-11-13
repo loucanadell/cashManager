@@ -73,8 +73,20 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="paymentType" parent="viewParent">
+        <item name="android:background">@drawable/payment_type_bk</item>
+        <item name="android:textColor">@color/whiteTextColor</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="paymentButton" parent="viewParent">
         <item name="android:background">@drawable/payment_bk</item>
+        <item name="android:textColor">@color/whiteTextColor</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="cancelButton" parent="viewParent">
+        <item name="android:background">@drawable/cancel_bk</item>
         <item name="android:textColor">@color/whiteTextColor</item>
         <item name="android:textStyle">bold</item>
     </style>

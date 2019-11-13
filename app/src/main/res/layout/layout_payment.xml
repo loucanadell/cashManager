@@ -17,39 +17,22 @@
         android:padding="@dimen/loginViewsMargin">
 
         <Button
-            style="@style/addArticleButton"
-            android:id="@+id/scanButton"
+            style="@style/paymentType"
+            android:id="@+id/paypalButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:text="Add article" />
+            android:layout_marginTop="40dp"
+            android:text="Paypal" />
 
         <Button
-            style="@style/addArticleButton"
-            android:id="@+id/cartButton"
+            style="@style/paymentType"
+            android:id="@+id/nfcButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:text="Display cart" />
-
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <Button
-                style="@style/paymentButton"
-                android:id="@+id/paymentButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|bottom"
-                android:text="Payment" />
-        </LinearLayout>
+            android:layout_marginTop="40dp"
+            android:text="NFC" />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

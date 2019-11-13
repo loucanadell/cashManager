@@ -19,7 +19,18 @@ class UserService {
         start()
     }
 
-    fun postRequest(user: User) {
+    fun getRequest(params: String) {
+        val finalUrl :String = url + params
+        val stringRequest = StringRequest(
+            Request.Method.GET, finalUrl,
+            Response.Listener<String> { response ->
+                result = response
+            },
+            Response.ErrorListener { Log.d("ERROR", "$it") })
+        requestQueue.add(stringRequest)
+    }
+
+    fun signupRequest(user: User) {
         val jsonobj = JSONObject()
 
         jsonobj.put("username", user.username)

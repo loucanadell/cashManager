@@ -6,12 +6,12 @@
     <gradient
         android:angle="45"
         android:centerX="35%"
-        android:startColor="#94c977"
-        android:endColor="#94c977"
+        android:startColor="#f56464"
+        android:endColor="#f56464"
         android:type="linear"
         />
     <size
-        android:width="182dp"
-        android:height="54dp"
+        android:width="102dp"
+        android:height="34dp"
         />
 </shape>

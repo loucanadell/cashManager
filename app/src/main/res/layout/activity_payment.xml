@@ -17,13 +17,20 @@
 
             <LinearLayout
                 style="@style/parent"
+                android:layout_weight="3"
                 android:background="@drawable/login_shape_bk"
-                android:orientation="vertical"
-                android:layout_weight="3">
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Connected"
+                    android:textStyle="italic"
+                    android:textColor="@color/cardview_light_background"></TextView>
 
                 <ImageView
                     style="@style/parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="180dp"
                     android:background="@drawable/ic_login_bk"
                     android:contentDescription="login background" />
 
@@ -36,19 +43,22 @@
             android:layout_height="match_parent"
             android:layout_alignParentTop="true"
             android:orientation="vertical"
+            android:layout_marginTop="20dp"
             android:layout_marginRight="30dp"
             android:layout_marginLeft="30dp">
 
-
             <TextView
                 style="@style/headerText"
+                android:text="Payment"
                 android:layout_gravity="center"
-                android:text="Cash Register"
-                android:layout_marginTop="20dp"/>
-
+                android:layout_marginTop="0dp"/>
+            <TextView
+                style="@style/billText"
+                android:layout_gravity="center"
+                android:text="Choose your type of payment"/>
 
             <include
-                layout="@layout/layout_signup"/>
+                layout="@layout/layout_payment" />
 
         </LinearLayout>
     </RelativeLayout>

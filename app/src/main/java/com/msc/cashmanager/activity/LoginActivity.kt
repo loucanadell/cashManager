@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.msc.cashmanager.R
 
-class SettingsActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +27,10 @@ class SettingsActivity : AppCompatActivity() {
             if (ipAddress.text.toString().trim().isNotBlank() &&
                 password.text.toString().trim().isNotBlank() &&
                 email.text.toString().trim().isNotBlank()) {
+                val params :String = "?email=" + email.text.toString() + "?password=" + password.text.toString()
+
+                // POST Login(params)
+
                 val homeIntent = Intent(this, HomeActivity::class.java)
                 startActivity(homeIntent)
             }

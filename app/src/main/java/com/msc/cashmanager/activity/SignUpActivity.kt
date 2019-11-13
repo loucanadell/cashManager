@@ -39,6 +39,8 @@ class SignUpActivity: AppCompatActivity() {
                 if (password.text.toString() == confirmPassword.text.toString()) {
                     createUser(username.text.toString(), lastname.text.toString(),
                         address.text.toString(), password.text.toString(), email.text.toString())
+                } else {
+                    Toast.makeText(applicationContext,"Password not matching", Toast.LENGTH_SHORT).show()
                 }
             }
             else {
@@ -50,7 +52,7 @@ class SignUpActivity: AppCompatActivity() {
     fun createUser(username :String, lastname :String, address :String, password :String, email :String) {
         val user = User(username, lastname, email, password, address)
         val rq = UserService()
-        rq.postRequest(user)
+        rq.signupRequest(user)
         rq.requestQueue.addRequestFinishedListener(
             RequestQueue.RequestFinishedListener<JSONObject>() {
                 val homeIntent = Intent(this, HomeActivity::class.java)

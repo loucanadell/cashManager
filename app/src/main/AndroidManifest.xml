@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.hardware.camera"/>
+    <uses-permission android:name="android.permission.NFC" />
     <uses-permission android:name="android.permission.LOCATION_HARDWARE.autofocus"/>
 
     <application
@@ -14,7 +15,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.SettingsActivity">
+        <activity android:name=".activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,6 +29,17 @@
         <activity android:name=".activity.ScannerActivity">
         </activity>
         <activity android:name=".activity.SignUpActivity">
+        </activity>
+        <activity android:name=".activity.PaymentActivity">
+        </activity>
+        <activity android:name=".activity.NfcActivity">
+            <intent-filter>
+                <action android:name="android.nfc.action.TECH_DISCOVERED" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data
+                android:name="android.nfc.action.TECH_DISCOVERED"
+                android:resource="@xml/nfc_tech_filter" />
         </activity>
     </application>
 </manifest>

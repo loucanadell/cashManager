@@ -3,6 +3,7 @@ package com.msc.cashmanager.activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.msc.cashmanager.model.Product
 import com.msc.cashmanager.R
@@ -17,21 +18,7 @@ class HomeActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-
-        val cartButton = findViewById<Button>(R.id.cartButton);
-
-        cartButton.setOnClickListener {
-            val cartIntent = Intent(this, CartActivity::class.java)
-            cartIntent.putExtra("cart", cart)
-            startActivity(cartIntent)
-        }
-
-        val scanButton = findViewById<Button>(R.id.scanButton);
-
-        scanButton.setOnClickListener {
-            val scanIntent = Intent(this, ScannerActivity::class.java)
-            startActivity(scanIntent)
-        }
+        bindingView()
 
         // MOCKING DATA -> CALL TO API
         cart.add(Product("iphone", 10F))
@@ -45,5 +32,31 @@ class HomeActivity: AppCompatActivity() {
             bill += element.price
         }
         billAmount.setText(bill.toString() + " €");
+    }
+
+    fun bindingView() {
+        val cartButton = findViewById<Button>(R.id.cartButton);
+        val scanButton = findViewById<Button>(R.id.scanButton);
+        val paymentButton = findViewById<Button>(R.id.paymentButton);
+
+        cartButton.setOnClickListener {
+            val cartIntent = Intent(this, CartActivity::class.java)
+            cartIntent.putExtra("cart", cart)
+            startActivity(cartIntent)
+        }
+
+        scanButton.setOnClickListener {
+            val scanIntent = Intent(this, ScannerActivity::class.java)
+            startActivity(scanIntent)
+        }
+
+        paymentButton.setOnClickListener {
+            if (bill == 0F) {
+                Toast.makeText(applicationContext,"Your cart is empty", Toast.LENGTH_SHORT).show()
+            } else {
+                val paymentIntent = Intent(this, PaymentActivity::class.java)
+                startActivity(paymentIntent)
+            }
+        }
     }
 }

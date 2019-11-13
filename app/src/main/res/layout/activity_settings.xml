@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     style="@style/loginParent"
-    tools:context="com.msc.cashmanager.activity.SettingsActivity">
+    tools:context="com.msc.cashmanager.activity.LoginActivity">
 
         <RelativeLayout
             style="@style/parent">
@@ -43,12 +43,12 @@
                 <TextView
                     style="@style/headerText"
                     android:layout_gravity="center"
-                    android:text="Cash Register"
+                    android:text="Welcome"
                     android:layout_marginTop="20dp"/>
                 <TextView
                     style="@style/headerText"
                     android:layout_gravity="center"
-                    android:text="Settings"
+                    android:text="Cash Register"
                     android:layout_marginTop="5dp"/>
 
                 <include
