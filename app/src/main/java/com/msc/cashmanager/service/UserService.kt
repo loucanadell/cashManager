@@ -5,13 +5,16 @@ import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.*
+import com.google.gson.stream.JsonToken
+import com.msc.cashmanager.model.AuthSession
+import com.msc.cashmanager.model.Product
 import com.msc.cashmanager.model.User
 import org.json.JSONObject
 import java.io.File
 
 class UserService {
     var result = ""
-    var url :String = "http://3.81.154.236:8080/user"
+    var url :String = "http://3.81.154.236:8080/"
 
     val cache = DiskBasedCache(File("./"), 1024 * 1024)
     val network = BasicNetwork(HurlStack())
@@ -19,7 +22,25 @@ class UserService {
         start()
     }
 
-    fun getRequest(params: String) {
+    fun getCurrentCart() {
+        val finalUrl :String = url + "user/opencart/" + AuthSession.userId
+        val stringRequest = object: StringRequest(
+            Request.Method.GET, finalUrl,
+            Response.Listener<String> { response ->
+                result = response
+            },
+            Response.ErrorListener { Log.d("ERROR", "$it") })
+        {
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers = HashMap<String, String>()
+                headers["Authorization"] = "Bearer " + AuthSession.accessToken
+                return headers
+            }
+        }
+        requestQueue.add(stringRequest)
+    }
+
+    fun getProductRequest(params: String) {
         val finalUrl :String = url + params
         val stringRequest = StringRequest(
             Request.Method.GET, finalUrl,
@@ -40,7 +61,23 @@ class UserService {
         jsonobj.put("password", user.password)
 
         val stringRequest = JsonObjectRequest(
-            Request.Method.POST, url, jsonobj,
+            Request.Method.POST, url + "signup", jsonobj,
+            Response.Listener { response ->
+                result = response.toString()
+            },
+            Response.ErrorListener { Log.d("ERROR", "$it") })
+
+        requestQueue.add(stringRequest)
+    }
+
+    fun loginRequest(email: String, password: String) {
+        val jsonobj = JSONObject()
+
+        jsonobj.put("email", email)
+        jsonobj.put("password", password)
+
+        val stringRequest = JsonObjectRequest(
+            Request.Method.POST, url + "login", jsonobj,
             Response.Listener { response ->
                 result = response.toString()
             },

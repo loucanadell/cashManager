@@ -1,4 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.msc.cashmanager">
 
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -14,7 +15,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,16 +24,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.HomeActivity">
-        </activity>
-        <activity android:name=".activity.CartActivity">
-        </activity>
-        <activity android:name=".activity.ScannerActivity">
-        </activity>
-        <activity android:name=".activity.SignUpActivity">
-        </activity>
-        <activity android:name=".activity.PaymentActivity">
-        </activity>
+        <activity android:name=".activity.HomeActivity"/>
+        <activity android:name=".activity.CartActivity"/>
+        <activity android:name=".activity.ScannerActivity"/>
+        <activity android:name=".activity.SignUpActivity"/>
+        <activity android:name=".activity.PaymentActivity"/>
+        <activity android:name=".activity.PaypalActivity"/>
         <activity android:name=".activity.NfcActivity">
             <intent-filter>
                 <action android:name="android.nfc.action.TECH_DISCOVERED" />
