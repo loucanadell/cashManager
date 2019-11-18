@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/listBack"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
 
 
@@ -11,14 +16,26 @@
         android:layout_height="wrap_content"
         android:text="Name"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+<<<<<<< HEAD
         android:textSize="20dp" />
+=======
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+>>>>>>> 18e3257b2f1db65f0a63fe34ccfcf47d621daa4a
 
     <TextView
         android:id="@+id/productPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Price" />
+        android:layout_below="@+id/productName"
+        android:text="Price"
+        app:layout_constraintStart_toStartOf="@+id/productName"
+        app:layout_constraintTop_toBottomOf="@+id/productName" />
 
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+<<<<<<< HEAD
     <Button
         android:id="@+id/btt_supprimer"
         android:layout_width="60dp"
@@ -29,3 +46,5 @@
 
 
 </LinearLayout>
+=======
+>>>>>>> 18e3257b2f1db65f0a63fe34ccfcf47d621daa4a

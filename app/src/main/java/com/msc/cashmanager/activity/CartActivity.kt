@@ -6,6 +6,7 @@ import android.widget.ListView
 import com.msc.cashmanager.model.Product
 import com.msc.cashmanager.model.ProductAdapter
 import com.msc.cashmanager.R
+import com.msc.cashmanager.model.SelectedProduct
 
 
 class CartActivity: AppCompatActivity() {
@@ -16,7 +17,7 @@ class CartActivity: AppCompatActivity() {
     }
 
     private fun populateProductList() {
-        val cart = intent.getParcelableArrayListExtra<Product>("cart")
+        val cart = intent.getParcelableArrayListExtra<SelectedProduct>("cart")
         val adapter = ProductAdapter(this, cart)
         val mListView :ListView = findViewById(R.id.list_view)
         mListView.adapter = adapter

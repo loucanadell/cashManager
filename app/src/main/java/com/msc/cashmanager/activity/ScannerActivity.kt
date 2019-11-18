@@ -16,7 +16,6 @@ import com.android.volley.RequestQueue
 import com.google.gson.Gson
 import com.msc.cashmanager.model.Product
 import com.msc.cashmanager.service.ProductService
-import kotlinx.android.synthetic.main.list_item.*
 
 
 class ScannerActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
@@ -93,7 +92,7 @@ class ScannerActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
         builder.setPositiveButton("Add to cart") { _, _ ->
             val prod = Product(product.name, product.price)
             val rq = ProductService()
-            rq.postRequest(prod)
+            rq.addArticleRequest(prod)
             val homeIntent = Intent(this, HomeActivity::class.java)
             startActivity(homeIntent)
             finish()
