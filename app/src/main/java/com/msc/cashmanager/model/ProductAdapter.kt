@@ -24,12 +24,9 @@ class ProductAdapter(context: Context, products: ArrayList<SelectedProduct>) :
 
         val name = convertView!!.findViewById(R.id.productName) as TextView
         val price = convertView!!.findViewById(R.id.productPrice) as TextView
-        var delete = convertView!!.findViewById(R.id.deleteButton) as Button
-        var back = convertView!!.findViewById(R.id.listBack) as ConstraintLayout
 
         name.setText(product!!.name)
         price.setText(product!!.price.toString() + " €")
-        delete.setText("Delete")
 
         return convertView
     }
