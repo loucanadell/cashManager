@@ -55,9 +55,11 @@ class SignUpActivity: AppCompatActivity() {
         rq.signupRequest(user)
         rq.requestQueue.addRequestFinishedListener(
             RequestQueue.RequestFinishedListener<JSONObject>() {
-                val homeIntent = Intent(this, HomeActivity::class.java)
-                homeIntent.putExtra("user", user)
-                startActivity(homeIntent)
+                if (rq.result != "") {
+                    Toast.makeText(applicationContext,"Account successfully created", Toast.LENGTH_SHORT).show()
+                    val loginIntent = Intent(this, LoginActivity::class.java)
+                    startActivity(loginIntent)
+                }
             }
         )
     }

@@ -58,4 +58,22 @@ class ProductService: AppCompatActivity() {
         }
         requestQueue.add(stringRequest)
     }
+
+    fun deleteArticle(id :String) {
+        val finalUrl :String = url + id
+        val stringRequest = object: StringRequest(
+            Request.Method.DELETE, finalUrl,
+            Response.Listener<String> { response ->
+                result = response
+            },
+            Response.ErrorListener { Log.d("ERROR", "$it") })
+        {
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers = HashMap<String, String>()
+                headers["Authorization"] = "Bearer " + AuthSession.accessToken
+                return headers
+            }
+        }
+        requestQueue.add(stringRequest)
+    }
 }

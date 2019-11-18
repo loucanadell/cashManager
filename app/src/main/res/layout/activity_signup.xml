@@ -9,27 +9,26 @@
         style="@style/parent">
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentTop="true"
-            android:weightSum="12">
-
             <LinearLayout
-                style="@style/parent"
-                android:background="@drawable/login_shape_bk"
-                android:orientation="vertical"
-                android:layout_weight="3">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:weightSum="12">
 
-                <ImageView
+                <LinearLayout
                     style="@style/parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/ic_login_bk"
-                    android:contentDescription="login background" />
+                    android:background="@drawable/login_shape_bk"
+                    android:orientation="vertical"
+                    android:layout_weight="3">
 
+                    <ImageView
+                        style="@style/parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/ic_login_bk"
+                        android:contentDescription="login background" />
+
+                </LinearLayout>
             </LinearLayout>
-
-            <include layout="@layout/layout_signup" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -45,10 +44,10 @@
                     android:layout_marginTop="20dp"
                     android:text="Cash Register" />
 
+                <include layout="@layout/layout_signup" />
+
 
             </LinearLayout>
-
-        </LinearLayout>
 
     </RelativeLayout>
 

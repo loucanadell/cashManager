@@ -26,7 +26,7 @@
                     android:layout_height="wrap_content"
                     android:text="Connected"
                     android:textStyle="italic"
-                    android:textColor="@color/cardview_light_background"></TextView>
+                    android:textColor="@color/cardview_light_background"/>
 
                 <ImageView
                     style="@style/parent"
@@ -61,10 +61,12 @@
                 android:layout_marginTop="0dp"/>
 
             <include
-                layout="@layout/layout_home"
-                android:layout_height="600dp" />
+                layout="@layout/layout_home" />
 
         </LinearLayout>
     </RelativeLayout>
+
+    <include
+        layout="@layout/layout_navigation"/>
 
 </RelativeLayout>

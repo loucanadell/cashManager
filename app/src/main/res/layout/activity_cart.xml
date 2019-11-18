@@ -59,4 +59,7 @@
         </LinearLayout>
     </RelativeLayout>
 
+    <include
+        layout="@layout/layout_navigation"/>
+
 </RelativeLayout>
