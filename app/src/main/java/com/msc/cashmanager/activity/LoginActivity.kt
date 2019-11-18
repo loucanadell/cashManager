@@ -55,12 +55,16 @@ class LoginActivity : AppCompatActivity() {
         rq.loginRequest(email, password)
         rq.requestQueue.addRequestFinishedListener(
             RequestQueue.RequestFinishedListener<JSONObject>() {
-                val token = Gson().fromJson(rq.result, Token::class.java)
-                val jwt = JWT(token.token)
-                AuthSession.userId = jwt.subject
-                AuthSession.accessToken = token.token
-                val homeIntent = Intent(this, HomeActivity::class.java)
-                startActivity(homeIntent)
+                if (rq.result != "") {
+                    val token = Gson().fromJson(rq.result, Token::class.java)
+                    val jwt = JWT(token.token)
+                    AuthSession.userId = jwt.subject
+                    AuthSession.accessToken = token.token
+                    val homeIntent = Intent(this, HomeActivity::class.java)
+                    startActivity(homeIntent)
+                } else {
+                    Toast.makeText(applicationContext,"Could not connect", Toast.LENGTH_SHORT).show()
+                }
             }
         )
     }
