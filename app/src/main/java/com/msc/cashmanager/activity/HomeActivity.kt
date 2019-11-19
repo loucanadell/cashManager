@@ -49,6 +49,7 @@ class HomeActivity: AppCompatActivity() {
             RequestQueue.RequestFinishedListener<JSONObject>() {
                 if (rq.result != "") {
                     val obj = JSONObject(rq.result)
+                    AuthSession.idCart = obj.getString("id")
                     val articlesArray = obj.getJSONArray("articles")
                     for (i in 0 until articlesArray.length()) {
                         val item = articlesArray.getJSONObject(i)
@@ -65,7 +66,8 @@ class HomeActivity: AppCompatActivity() {
                         bill += element.price
                     }
                 }
-                billAmount.setText(bill.toString() + " €");
+                AuthSession.billAmount = "$bill €"
+                billAmount.setText(AuthSession.billAmount);
             }
         )
     }
@@ -80,7 +82,9 @@ class HomeActivity: AppCompatActivity() {
         bottomNavBar.menu.getItem(0).isChecked = true;
         bottomNavBar.setOnNavigationItemSelectedListener { item -> updateMainFragment(item.itemId) }
         cartButton.setOnClickListener {
-            logout()
+            val cartIntent = Intent(this, CartActivity::class.java)
+            cartIntent.putExtra("cart", cart)
+            startActivity(cartIntent)
         }
 
         scanButton.setOnClickListener {
@@ -89,10 +93,7 @@ class HomeActivity: AppCompatActivity() {
         }
 
         logoutButton.setOnClickListener {
-            AuthSession.accessToken = ""
-            AuthSession.userId = ""
-            val loginIntent = Intent(this, LoginActivity::class.java)
-            startActivity(loginIntent)
+            logout()
         }
 
         paymentButton.setOnClickListener {
@@ -111,6 +112,7 @@ class HomeActivity: AppCompatActivity() {
         builder.setPositiveButton("Confirm") { _, _ ->
             AuthSession.accessToken = ""
             AuthSession.userId = ""
+            AuthSession.billAmount = ""
             val loginIntent = Intent(this, LoginActivity::class.java)
             startActivity(loginIntent)
         }

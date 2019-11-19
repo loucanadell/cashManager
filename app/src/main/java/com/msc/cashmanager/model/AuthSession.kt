@@ -4,7 +4,8 @@ class AuthSession {
     companion object {
         var userId :String? = ""
         var accessToken :String = ""
-        var username = ""
+        var billAmount = ""
+        var idCart = ""
         lateinit var instance :AuthSession
         fun getAuthInfo():AuthSession {
             if (instance == null) {

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/loginCard"
+    app:cardCornerRadius="@dimen/loginCardRadius"
+    android:elevation="5dp"
+    android:layout_gravity="center"
+    android:layout_marginTop="@dimen/loginViewsMargin"
+    android:layout_marginBottom="@dimen/loginViewsMargin"
+    android:background="@color/whiteCardColor">
+
+    <LinearLayout
+        style="@style/linearParent"
+        android:layout_gravity="center"
+        android:padding="@dimen/loginViewsMargin">
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:id="@+id/visa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClicked"
+
+                android:text="Visa" />
+
+            <RadioButton
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:id="@+id/mastercard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClicked"
+                android:text="MasterCard" />
+        </RadioGroup>
+
+            <EditText
+                style="@style/modifiedEditText"
+                android:id="@+id/cardNumber"
+                android:inputType="number"
+                android:maxLines="1"
+                android:hint="Card number"
+                android:layout_marginTop="@dimen/loginViewsMargin"/>
+
+            <EditText
+                style="@style/modifiedEditText"
+                android:id="@+id/date"
+                android:inputType="date"
+                android:maxLines="1"
+                android:hint="Expiration date MM/YY"
+                android:layout_marginTop="@dimen/loginViewsMargin"/>
+
+            <EditText
+                style="@style/modifiedEditText"
+                android:id="@+id/cryptogram"
+                android:inputType="number"
+                android:maxLines="1"
+                android:hint="Cryptogram"
+                android:layout_marginTop="@dimen/loginViewsMargin"/>
+
+        <Button
+            style="@style/paymentButton"
+            android:id="@+id/billButton"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/loginViewsMargin"/>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

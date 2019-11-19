@@ -51,8 +51,8 @@ class ProductAdapter(context: Context, products: ArrayList<SelectedProduct>) :
             )
         }
 
-        name.setText(product!!.name)
-        price.setText(product!!.price.toString() + " €")
+        name.text = product!!.name
+        price.text = product!!.price.toString() + " €"
 
         return convertView
     }
