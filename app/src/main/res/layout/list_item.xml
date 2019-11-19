@@ -10,14 +10,11 @@
 
     <TextView
         android:id="@+id/productName"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="303dp"
-        android:layout_marginRight="303dp"
         android:text="Name"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="13dp"
-        app:layout_constraintEnd_toStartOf="@+id/delete"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,21 +23,32 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/productName"
+        android:layout_marginEnd="333dp"
+        android:layout_marginRight="333dp"
         android:text="Price"
-        app:layout_constraintStart_toStartOf="@+id/productName"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/productName" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/delete"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_width="30dp"
+        android:layout_height="32dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:src="@drawable/ic_delete"
-        app:backgroundTint="#E9DCDC"
+        android:src="@android:drawable/ic_delete"
+        app:backgroundTint="#FFFFFF"
+        app:fabCustomSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/productName"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:maxImageSize="20dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="208dp"
+        android:layout_height="20dp"
+        tools:layout_editor_absoluteX="151dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

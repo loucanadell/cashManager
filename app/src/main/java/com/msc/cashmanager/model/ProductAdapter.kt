@@ -1,6 +1,7 @@
 package com.msc.cashmanager.model
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.widget.TextView
 import android.view.LayoutInflater
@@ -8,11 +9,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat.startActivity
 import com.android.volley.RequestQueue
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.gson.Gson
 import com.msc.cashmanager.R
+import com.msc.cashmanager.activity.CartActivity
+import com.msc.cashmanager.service.CartService
 import com.msc.cashmanager.service.ProductService
 import com.msc.cashmanager.service.UserService
 import kotlinx.android.synthetic.main.activity_home.*
@@ -39,8 +45,8 @@ class ProductAdapter(context: Context, products: ArrayList<SelectedProduct>) :
             val rq = ProductService()
             rq.deleteArticle(product!!.id.toString())
             rq.requestQueue.addRequestFinishedListener(
-                RequestQueue.RequestFinishedListener<JSONObject>() {
-                    Log.d("DEBUG", rq.result)
+                RequestQueue.RequestFinishedListener<String>() {
+
                 }
             )
         }

@@ -60,7 +60,7 @@ class ProductService: AppCompatActivity() {
     }
 
     fun deleteArticle(id :String) {
-        val finalUrl :String = url + id
+        val finalUrl :String = "http://3.81.154.236:8080/cart/" + AuthSession.userId + "/article/" + id
         val stringRequest = object: StringRequest(
             Request.Method.DELETE, finalUrl,
             Response.Listener<String> { response ->
