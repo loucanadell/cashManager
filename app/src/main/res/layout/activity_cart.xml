@@ -30,9 +30,21 @@
 
                 <ImageView
                     style="@style/parent"
-                    android:layout_height="180dp"
+                    android:layout_height="1103dp"
                     android:background="@drawable/ic_login_bk"
                     android:contentDescription="login background" />
+
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Button" />
+
+                <TextView
+                    android:id="@+id/NfcReader"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView" />
 
             </LinearLayout>
 

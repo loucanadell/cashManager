@@ -3,50 +3,41 @@ package com.msc.cashmanager.activity
 import android.content.Intent
 import android.content.Intent.getIntent
 import android.nfc.NfcAdapter
+import android.nfc.Tag
+import android.nfc.tech.IsoDep
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.msc.cashmanager.R
+import com.msc.cashmanager.tools.Utils
 import com.pro100svitlo.creditCardNfcReader.CardNfcAsyncTask
 import com.pro100svitlo.creditCardNfcReader.utils.CardNfcUtils
+import kotlinx.android.synthetic.main.activity_cart.*
 
-abstract class NfcActivity :AppCompatActivity(), CardNfcAsyncTask.CardNfcInterface {
+class NfcActivity : AppCompatActivity(), NfcAdapter.ReaderCallback {
 
-    abstract var mCardNfcUtils: CardNfcUtils
-    abstract var mNfcAdapter: NfcAdapter
-    abstract var mIntentFromCreate: Boolean
-
-    override fun onCreate(savedInstanceState : Bundle?) {
+    private var nfcAdapter: NfcAdapter? = null
+    override fun onCreate(savedInstanceState: Bundle?) {
+        nfcAdapter = NfcAdapter.getDefaultAdapter(this);
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_nfc)
-        mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
-        if (mNfcAdapter == null) {
-        } else {
-            mCardNfcUtils = CardNfcUtils(this);
-            mIntentFromCreate = true;
-            onNewIntent(intent);
-        }
+        setContentView(R.layout.activity_cart)
+    }
+    public override fun onResume() {
+        super.onResume()
+        nfcAdapter?.enableReaderMode(this, this,
+            NfcAdapter.FLAG_READER_NFC_A or
+                    NfcAdapter.FLAG_READER_SKIP_NDEF_CHECK,
+            null)
     }
 
-    override fun onResume() {
-        super.onResume();
-        mIntentFromCreate = false;
-        if (mNfcAdapter != null && !mNfcAdapter.isEnabled){
-        } else if (mNfcAdapter != null){
-            mCardNfcUtils.enableDispatch()
-        }
-    }
-
-    override fun onPause() {
+    public override fun onPause() {
         super.onPause()
-        if (mNfcAdapter != null) {
-            mCardNfcUtils.disableDispatch()
-        }
+        nfcAdapter?.disableReaderMode(this)
     }
-
-    override fun onNewIntent(intent: Intent?) {
-        super.onNewIntent(intent);
-        if (mNfcAdapter != null && mNfcAdapter.isEnabled) {
-            val mCardNfcAsyncTask = CardNfcAsyncTask.Builder(this, intent, mIntentFromCreate) .build()
-        }
+    override fun onTagDiscovered(tag: Tag?) {
+        val isoDep = IsoDep.get(tag)
+        isoDep.connect()
+        runOnUiThread { NfcRead.append("\nCard Response: "
+                + Utils.toHex(isoDep.tag.id))}
+        isoDep.close()
     }
 }
