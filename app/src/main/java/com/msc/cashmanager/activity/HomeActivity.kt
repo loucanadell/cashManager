@@ -66,8 +66,9 @@ class HomeActivity: AppCompatActivity() {
                         bill += element.price
                     }
                 }
-                AuthSession.billAmount = "$bill €"
-                billAmount.setText(AuthSession.billAmount);
+                val formattedBill = "%.2f".format(bill)
+                AuthSession.billAmount = "$formattedBill €"
+                billAmount.text = AuthSession.billAmount;
             }
         )
     }
