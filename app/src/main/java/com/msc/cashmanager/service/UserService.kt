@@ -40,14 +40,51 @@ class UserService {
         requestQueue.add(stringRequest)
     }
 
-    fun getProductRequest(params: String) {
-        val finalUrl :String = url + params
-        val stringRequest = StringRequest(
+    fun getUser() {
+        val finalUrl :String = url + "user/" + AuthSession.userId
+        val stringRequest = object: StringRequest(
             Request.Method.GET, finalUrl,
             Response.Listener<String> { response ->
                 result = response
             },
             Response.ErrorListener { Log.d("ERROR", "$it") })
+        {
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers = HashMap<String, String>()
+                headers["Authorization"] = "Bearer " + AuthSession.accessToken
+                return headers
+            }
+        }
+        requestQueue.add(stringRequest)
+    }
+
+    fun updateUser(user: User) {
+        val jsonobj = JSONObject()
+
+        if (user.username != "")
+            jsonobj.put("username", user.username)
+        if (user.lastname != "")
+            jsonobj.put("lastname", user.lastname)
+        if (user.address != "")
+            jsonobj.put("address", user.address)
+        if (user.email != "")
+            jsonobj.put("email", user.email)
+        if (user.password != "")
+            jsonobj.put("password", user.password)
+
+        val stringRequest = object: JsonObjectRequest(
+            Request.Method.POST, url + "signup", jsonobj,
+            Response.Listener { response ->
+                result = response.toString()
+            },
+            Response.ErrorListener { Log.d("ERROR", "$it") })
+        {
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers = HashMap<String, String>()
+                headers["Authorization"] = "Bearer " + AuthSession.accessToken
+                return headers
+            }
+        }
         requestQueue.add(stringRequest)
     }
 

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/loginCard"
+    app:cardCornerRadius="@dimen/loginCardRadius"
+    android:elevation="5dp"
+    android:layout_gravity="center"
+    android:layout_marginTop="@dimen/loginViewsMargin"
+    android:layout_marginBottom="@dimen/loginViewsMargin"
+    android:background="@color/whiteCardColor">
+
+    <LinearLayout
+        style="@style/linearParent"
+        android:layout_gravity="center"
+        android:padding="@dimen/loginViewsMargin">
+
+        <TextView
+            android:id="@+id/username"
+            style="@style/headerText"
+            android:layout_marginTop="@dimen/loginViewsMargin"
+            android:maxLines="1"
+            android:textSize="10dp"
+            android:text="Firstname"
+            android:textColor="#AD000000" />
+
+        <TextView
+            android:id="@+id/usernameValue"
+            style="@style/headerText"
+            android:maxLines="1"
+
+            android:textColor="#00BCD4"
+            android:textSize="17dp" />
+
+        <TextView
+            android:id="@+id/lastname"
+            style="@style/headerText"
+            android:layout_marginTop="@dimen/loginViewsMargin"
+            android:maxLines="1"
+            android:textSize="10dp"
+            android:text="Lastname"
+            android:textColor="#AD000000" />
+
+        <TextView
+            android:id="@+id/lastnameValue"
+            style="@style/headerText"
+            android:maxLines="1"
+
+            android:textColor="#00BCD4"
+            android:textSize="17dp" />
+
+        <TextView
+            android:id="@+id/address"
+            style="@style/headerText"
+            android:layout_marginTop="@dimen/loginViewsMargin"
+            android:maxLines="1"
+            android:textSize="10dp"
+            android:text="Residence Address"
+            android:textColor="#AD000000" />
+
+        <TextView
+            android:id="@+id/addressValue"
+            style="@style/headerText"
+            android:maxLines="1"
+
+            android:textColor="#00BCD4"
+            android:textSize="17dp" />
+
+        <TextView
+            android:id="@+id/email"
+            style="@style/headerText"
+            android:layout_marginTop="@dimen/loginViewsMargin"
+            android:maxLines="1"
+            android:text="Email"
+            android:textColor="#AD000000"
+            android:textSize="10dp" />
+
+        <TextView
+            android:id="@+id/emailValue"
+            style="@style/headerText"
+            android:maxLines="1"
+
+            android:textColor="#00BCD4"
+            android:textSize="17dp" />
+
+        <TextView
+            android:id="@+id/password"
+            style="@style/headerText"
+            android:layout_marginTop="@dimen/loginViewsMargin"
+            android:maxLines="1"
+            android:text="Password"
+            android:textColor="#AD000000"
+            android:textSize="10dp" />
+
+        <TextView
+            android:id="@+id/passwordValue"
+            style="@style/headerText"
+            android:maxLines="1"
+            android:text="*********"
+            android:textColor="#00BCD4"
+            android:textSize="17dp" />
+
+
+        <Button
+            style="@style/paymentButton"
+            android:id="@+id/updateButton"
+            android:backgroundTint="#00BCD4"
+            android:text="Update user"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"/>
+
+        <Button
+            style="@style/cancelButton"
+            android:id="@+id/logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:text="Disconnect" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

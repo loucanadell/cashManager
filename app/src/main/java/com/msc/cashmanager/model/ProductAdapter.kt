@@ -42,7 +42,7 @@ class ProductAdapter(context: Context, products: ArrayList<SelectedProduct>) :
 
 
 
-        /*val delete = convertView!!.findViewById(R.id.delete) as FloatingActionButton
+        val delete = convertView!!.findViewById(R.id.delete) as FloatingActionButton
         delete.setOnClickListener {
             val rq = ProductService()
             rq.deleteArticle(product!!.id.toString())
@@ -52,7 +52,7 @@ class ProductAdapter(context: Context, products: ArrayList<SelectedProduct>) :
 
                 }
             )
-        }*/
+        }
 
         name.text = product!!.name
         price.text = product!!.price.toString() + " €"

@@ -22,20 +22,6 @@
                 android:background="@drawable/login_shape_bk"
                 android:orientation="vertical">
 
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/profile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center|end"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="10dp"
-                    android:src="@drawable/ic_settings"
-                    android:tint="#FFFFFF"
-                    app:backgroundTint="#03A9F4"
-                    app:fabCustomSize="40dp"
-                    app:hoveredFocusedTranslationZ="6dp"
-                    app:maxImageSize="30dp" />
-
                 <ImageView
                     style="@style/parent"
                     android:layout_height="180dp"
@@ -55,26 +41,17 @@
             android:layout_marginRight="30dp"
             android:layout_marginLeft="30dp">
 
-
-            <TextView
-                style="@style/billText"
-                android:layout_gravity="center"
-                android:text="Current bill amount"
-                android:layout_marginTop="20dp"/>
-
             <TextView
                 style="@style/headerText"
-                android:id="@+id/billAmount"
+                android:text="Profile"
                 android:layout_gravity="center"
                 android:layout_marginTop="0dp"/>
 
             <include
-                layout="@layout/layout_home" />
+                layout="@layout/layout_profile"/>
+
 
         </LinearLayout>
     </RelativeLayout>
-
-    <include
-        layout="@layout/layout_navigation"/>
 
 </RelativeLayout>

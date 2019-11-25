@@ -30,6 +30,8 @@
         <activity android:name=".activity.SignUpActivity"/>
         <activity android:name=".activity.PaymentActivity"/>
         <activity android:name=".activity.PaypalActivity"/>
+        <activity android:name=".activity.ProfileActivity"/>
+        <activity android:name=".activity.UpdateActivity"/>
         <activity android:name=".activity.NfcActivity">
             <intent-filter>
                 <action android:name="android.nfc.action.TECH_DISCOVERED" />

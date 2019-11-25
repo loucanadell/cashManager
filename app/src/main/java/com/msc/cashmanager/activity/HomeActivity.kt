@@ -77,11 +77,15 @@ class HomeActivity: AppCompatActivity() {
         val cartButton = findViewById<Button>(R.id.cartButton);
         val scanButton = findViewById<Button>(R.id.scanButton);
         val paymentButton = findViewById<Button>(R.id.paymentButton);
-        val logoutButton = findViewById<FloatingActionButton>(R.id.logout)
+        val profileButton = findViewById<FloatingActionButton>(R.id.profile)
         val bottomNavBar = findViewById<BottomNavigationView>(R.id.activity_main_bottom_navigation)
 
         bottomNavBar.menu.getItem(0).isChecked = true;
         bottomNavBar.setOnNavigationItemSelectedListener { item -> updateMainFragment(item.itemId) }
+        profileButton.setOnClickListener {
+            val profileIntent = Intent(this, ProfileActivity::class.java)
+            startActivity(profileIntent)
+        }
         cartButton.setOnClickListener {
             val cartIntent = Intent(this, CartActivity::class.java)
             cartIntent.putExtra("cart", cart)
@@ -93,10 +97,6 @@ class HomeActivity: AppCompatActivity() {
             startActivity(scanIntent)
         }
 
-        logoutButton.setOnClickListener {
-            logout()
-        }
-
         paymentButton.setOnClickListener {
             if (bill == 0F) {
                 Toast.makeText(applicationContext,"Your cart is empty", Toast.LENGTH_SHORT).show()
@@ -105,23 +105,6 @@ class HomeActivity: AppCompatActivity() {
                 startActivity(paymentIntent)
             }
         }
-    }
-
-    private fun logout() {
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("You're about to logout")
-        builder.setPositiveButton("Confirm") { _, _ ->
-            AuthSession.accessToken = ""
-            AuthSession.userId = ""
-            AuthSession.billAmount = ""
-            val loginIntent = Intent(this, LoginActivity::class.java)
-            startActivity(loginIntent)
-        }
-        builder.setNegativeButton("Cancel") { dialog, _ ->
-            dialog.cancel()
-        }
-        val alert: AlertDialog = builder.create()
-        alert.show()
     }
 
     private fun updateMainFragment(integer: Int): Boolean {
