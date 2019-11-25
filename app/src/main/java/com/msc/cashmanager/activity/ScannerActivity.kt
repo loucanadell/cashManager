@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Vibrator
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -82,26 +83,42 @@ class ScannerActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
         )
     }
 
-    fun fetchProduct(result: String) {
-        val obj = JSONObject(result)
-        val productArray = obj.getJSONArray("items")
-        val product = Gson().fromJson(productArray[0].toString(), Product::class.java)
+    private fun displayError() {
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Product scanned")
-        builder.setMessage(product.name + ": " + product.price.toString() + " €")
-        builder.setPositiveButton("Add to cart") { _, _ ->
-            val prod = Product(product.name, product.price)
-            val rq = ProductService()
-            rq.addArticleRequest(prod)
-            val homeIntent = Intent(this, HomeActivity::class.java)
-            startActivity(homeIntent)
-            finish()
-        }
-        builder.setNegativeButton("Cancel") { dialog, _ ->
+        builder.setTitle("Product not found")
+        builder.setPositiveButton("OK") { dialog, _ ->
             dialog.cancel()
             scannerView?.resumeCameraPreview(this@ScannerActivity)
         }
         val alert: AlertDialog = builder.create()
         alert.show()
+    }
+
+    private fun fetchProduct(result: String) {
+        val obj = JSONObject(result)
+        val total = obj.getInt("total")
+        if (total == 0)
+            displayError()
+        else {
+            val productArray = obj.getJSONArray("items")
+            val product = Gson().fromJson(productArray[0].toString(), Product::class.java)
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Product scanned")
+            builder.setMessage(product.name + ": " + product.price.toString() + " €")
+            builder.setPositiveButton("Add to cart") { _, _ ->
+                val prod = Product(product.name, product.price)
+                val rq = ProductService()
+                rq.addArticleRequest(prod)
+                val homeIntent = Intent(this, HomeActivity::class.java)
+                startActivity(homeIntent)
+                finish()
+            }
+            builder.setNegativeButton("Cancel") { dialog, _ ->
+                dialog.cancel()
+                scannerView?.resumeCameraPreview(this@ScannerActivity)
+            }
+            val alert: AlertDialog = builder.create()
+            alert.show()
+        }
     }
 }
