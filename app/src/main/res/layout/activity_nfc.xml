@@ -1,6 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    style="@style/loginParent"
+    tools:context="com.msc.cashmanager.activity.LoginActivity">
 
-</LinearLayout>
+    <RelativeLayout
+        style="@style/parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:weightSum="12">
+
+            <LinearLayout
+                style="@style/parent"
+                android:layout_weight="3"
+                android:background="@drawable/login_shape_bk"
+                android:orientation="vertical">
+
+                <ImageView
+                    style="@style/parent"
+                    android:layout_height="180dp"
+                    android:background="@drawable/ic_login_bk"
+                    android:contentDescription="login background" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp">
+
+            <TextView
+                style="@style/headerText"
+                android:id="@+id/billAmount"
+                android:layout_gravity="center"
+                android:layout_marginTop="0dp"/>
+            <TextView
+                style="@style/billText"
+                android:layout_gravity="center"
+                android:text="Approach your credit card
+"/>
+
+            <include
+                layout="@layout/layout_nfc" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

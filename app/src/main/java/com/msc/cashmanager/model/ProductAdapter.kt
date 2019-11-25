@@ -39,20 +39,25 @@ class ProductAdapter(context: Context, products: ArrayList<SelectedProduct>) :
 
         val name = convertView!!.findViewById(R.id.productName) as TextView
         val price = convertView!!.findViewById(R.id.productPrice) as TextView
-        val delete = convertView!!.findViewById(R.id.delete) as FloatingActionButton
 
+
+
+        /*val delete = convertView!!.findViewById(R.id.delete) as FloatingActionButton
         delete.setOnClickListener {
             val rq = ProductService()
             rq.deleteArticle(product!!.id.toString())
             rq.requestQueue.addRequestFinishedListener(
                 RequestQueue.RequestFinishedListener<String>() {
 
+
                 }
             )
-        }
+        }*/
 
         name.text = product!!.name
         price.text = product!!.price.toString() + " €"
+
+        convertView.setTag(position)
 
         return convertView
     }

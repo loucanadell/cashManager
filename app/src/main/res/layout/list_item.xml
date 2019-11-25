@@ -9,6 +9,9 @@
     android:orientation="vertical">
 
     <TextView
+        android:focusableInTouchMode="false"
+        android:clickable="false"
+        android:focusable="false"
         android:id="@+id/productName"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
@@ -19,6 +22,9 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:focusableInTouchMode="false"
+        android:clickable="false"
+        android:focusable="false"
         android:id="@+id/productPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -30,6 +36,9 @@
         app:layout_constraintTop_toBottomOf="@+id/productName" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:focusableInTouchMode="false"
+        android:clickable="false"
+        android:focusable="false"
         android:id="@+id/delete"
         android:layout_width="30dp"
         android:layout_height="32dp"
@@ -45,6 +54,9 @@
         tools:layout_editor_absoluteY="0dp" />
 
     <TextView
+        android:focusableInTouchMode="false"
+        android:clickable="false"
+        android:focusable="false"
         android:id="@+id/textView"
         android:layout_width="208dp"
         android:layout_height="20dp"

@@ -29,7 +29,7 @@ class PaypalActivity: AppCompatActivity() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Payment status")
         builder.setMessage("Pending ...")
-        Run.after(5000) {
+        Run.after(2000) {
             if (true) {
                 //builder.setIcon(R.drawable.ic_validate)
                 builder.setMessage("Validate !")

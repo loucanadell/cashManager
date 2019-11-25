@@ -5,10 +5,12 @@
     <string name="login_password_hint">Password</string>
     <string name="signup_login_hint">Already have an account? Sign In</string>
     <string name="login_signup_hint">Don\'t have an account? Sign Up</string>
+    <string name="nfc_text">"Payment accepted"</string>
 
     <!-- BOTTOM NAVIGATION VIEW -->
     <string name="bottom_navigation_menu_home">Home</string>
     <string name="bottom_navigation_menu_scan">Scanner</string>
     <string name="bottom_navigation_menu_cart">Cart</string>
+
 
 </resources>
