@@ -29,13 +29,11 @@ class LoginActivity : AppCompatActivity() {
     fun bindingView() {
         val registerButton = findViewById<Button>(R.id.register);
         val signupButton = findViewById<Button>(R.id.signup);
-        val ipAddress = findViewById<EditText>(R.id.ipAddress);
         val password = findViewById<EditText>(R.id.password);
         val email = findViewById<EditText>(R.id.email);
 
         registerButton.setOnClickListener{
-            if (ipAddress.text.toString().trim().isNotBlank() &&
-                password.text.toString().trim().isNotBlank() &&
+            if (password.text.toString().trim().isNotBlank() &&
                 email.text.toString().trim().isNotBlank()) {
                 login(email.text.toString(), password.text.toString())
             }

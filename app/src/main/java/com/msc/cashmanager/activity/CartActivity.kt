@@ -12,6 +12,7 @@ import com.msc.cashmanager.R
 import com.msc.cashmanager.model.SelectedProduct
 import android.widget.Toast
 import com.msc.cashmanager.model.AuthSession
+import kotlinx.android.synthetic.main.layout_cart.*
 
 
 class CartActivity: AppCompatActivity() {
@@ -38,11 +39,8 @@ class CartActivity: AppCompatActivity() {
     private fun populateProductList() {
         val cart = intent.getParcelableArrayListExtra<SelectedProduct>("cart")
         val adapter = ProductAdapter(this, cart)
-        val mListView :ListView = findViewById(R.id.list_view)
-        mListView.adapter = adapter
-        mListView.setOnItemClickListener { parent, view, position, id ->
-            Toast.makeText(applicationContext, position, Toast.LENGTH_SHORT).show()
-        }
+        list_view.adapter = adapter
+        list_view.deferNotifyDataSetChanged()
     }
 
     private fun updateMainFragment(integer: Int): Boolean {

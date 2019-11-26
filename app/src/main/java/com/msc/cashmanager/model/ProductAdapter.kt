@@ -53,7 +53,7 @@ class ProductAdapter(context: Context, products: ArrayList<SelectedProduct>) :
         name.text = product!!.name
         price.text = product!!.price.toString() + " €"
 
-        convertView.setTag(position)
+        convertView.tag = position
 
         return convertView
     }
