@@ -21,21 +21,18 @@
                 android:id="@+id/username"
                 android:inputType="text"
                 android:maxLines="1"
-                android:hint="First name"
                 android:layout_marginTop="@dimen/loginViewsMargin"/>
             <EditText
                 style="@style/modifiedEditText"
                 android:id="@+id/lastname"
                 android:inputType="text"
                 android:maxLines="1"
-                android:hint="Lastname"
                 android:layout_marginTop="@dimen/loginViewsMargin"/>
             <EditText
                 style="@style/modifiedEditText"
                 android:id="@+id/address"
                 android:inputType="text"
                 android:maxLines="1"
-                android:hint="Residence address"
                 android:layout_marginTop="@dimen/loginViewsMargin"/>
 
             <EditText

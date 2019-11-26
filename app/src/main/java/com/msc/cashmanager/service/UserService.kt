@@ -61,19 +61,14 @@ class UserService {
     fun updateUser(user: User) {
         val jsonobj = JSONObject()
 
-        if (user.username != "")
-            jsonobj.put("username", user.username)
-        if (user.lastname != "")
-            jsonobj.put("lastname", user.lastname)
-        if (user.address != "")
-            jsonobj.put("address", user.address)
-        if (user.email != "")
-            jsonobj.put("email", user.email)
-        if (user.password != "")
-            jsonobj.put("password", user.password)
+        jsonobj.put("username", user.username)
+        jsonobj.put("lastname", user.lastname)
+        jsonobj.put("address", user.address)
+        jsonobj.put("email", user.email)
+        jsonobj.put("password", user.password)
 
         val stringRequest = object: JsonObjectRequest(
-            Request.Method.POST, url + "signup", jsonobj,
+            Request.Method.POST, url + "update/user/" + AuthSession.userId, jsonobj,
             Response.Listener { response ->
                 result = response.toString()
             },
@@ -93,9 +88,9 @@ class UserService {
 
         jsonobj.put("username", user.username)
         jsonobj.put("lastname", user.lastname)
-        jsonobj.put("address", user.address)
         jsonobj.put("email", user.email)
         jsonobj.put("password", user.password)
+        jsonobj.put("address", user.address)
 
         val stringRequest = JsonObjectRequest(
             Request.Method.POST, url + "signup", jsonobj,

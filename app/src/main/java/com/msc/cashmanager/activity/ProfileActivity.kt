@@ -50,6 +50,8 @@ class ProfileActivity: AppCompatActivity() {
                     val lastnameValue = obj.getString("lastname")
                     val addressValue = obj.getString("address")
                     val emailValue = obj.getString("email")
+                    val passValue = obj.getString("password")
+                    AuthSession.user = User(firstnameValue, lastnameValue, emailValue, passValue, addressValue)
                     firstName.text = firstnameValue
                     lastName.text = lastnameValue
                     address.text = addressValue

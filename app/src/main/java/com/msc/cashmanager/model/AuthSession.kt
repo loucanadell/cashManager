@@ -6,6 +6,7 @@ class AuthSession {
         var accessToken :String = ""
         var billAmount = ""
         var idCart = ""
+        var user = User("", "", "", "", "")
         lateinit var instance :AuthSession
         fun getAuthInfo():AuthSession {
             if (instance == null) {

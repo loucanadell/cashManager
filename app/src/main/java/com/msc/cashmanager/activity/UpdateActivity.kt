@@ -2,22 +2,19 @@ package com.msc.cashmanager.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.RequestQueue
 import com.msc.cashmanager.R
+import com.msc.cashmanager.model.AuthSession
 import com.msc.cashmanager.model.User
 import com.msc.cashmanager.service.UserService
 import org.json.JSONObject
 
 class UpdateActivity: AppCompatActivity() {
-    var usernameValue = ""
-    var lastnameValue = ""
-    var emailValue = ""
-    var passwordValue = ""
-    var addressValue = ""
     var check = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +29,17 @@ class UpdateActivity: AppCompatActivity() {
         val confirmPassword = findViewById<EditText>(R.id.confirmPassword)
         val email = findViewById<EditText>(R.id.email)
 
+        val user = AuthSession.user
+        var usernameValue = user.username
+        var lastnameValue = user.lastname
+        var emailValue = user.email
+        var passwordValue = user.password
+        var addressValue = user.address
+
+        username.hint = "Firstname : $usernameValue"
+        lastname.hint = "Lastname : $lastnameValue"
+        email.hint = "Email : $emailValue"
+        address.hint = "Address : $addressValue"
         cancelButton.setOnClickListener {
             val homeIntent = Intent(this, HomeActivity::class.java)
             startActivity(homeIntent)
@@ -52,21 +60,19 @@ class UpdateActivity: AppCompatActivity() {
             }
             if (address.text.toString().trim().isNotBlank())
                 addressValue = address.text.toString()
-            val user = User(usernameValue, lastnameValue, emailValue, passwordValue, addressValue)
+            val userFinal = User(usernameValue, lastnameValue, emailValue, passwordValue, addressValue)
             val rq = UserService()
-            rq.updateUser(user)
+            rq.updateUser(userFinal)
             rq.requestQueue.addRequestFinishedListener(
                 RequestQueue.RequestFinishedListener<JSONObject>() {
-                    if (rq.result != "") {
-                        if (check === true) {
-                            Toast.makeText(applicationContext,"Please login with your new credentials", Toast.LENGTH_LONG).show()
-                            val loginIntent = Intent(this, LoginActivity::class.java)
-                            startActivity(loginIntent)
-                        } else {
-                            Toast.makeText(applicationContext,"Account successfully updated", Toast.LENGTH_SHORT).show()
-                            val homeIntent = Intent(this, HomeActivity::class.java)
-                            startActivity(homeIntent)
-                        }
+                    if (check === true) {
+                        Toast.makeText(applicationContext,"Please login with your new credentials", Toast.LENGTH_LONG).show()
+                        val loginIntent = Intent(this, LoginActivity::class.java)
+                        startActivity(loginIntent)
+                    } else {
+                        Toast.makeText(applicationContext,"Account successfully updated", Toast.LENGTH_SHORT).show()
+                        val homeIntent = Intent(this, HomeActivity::class.java)
+                        startActivity(homeIntent)
                     }
                 }
             )
