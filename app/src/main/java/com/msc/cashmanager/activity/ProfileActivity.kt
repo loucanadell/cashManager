@@ -50,8 +50,7 @@ class ProfileActivity: AppCompatActivity() {
                     val lastnameValue = obj.getString("lastname")
                     val addressValue = obj.getString("address")
                     val emailValue = obj.getString("email")
-                    val passValue = obj.getString("password")
-                    AuthSession.user = User(firstnameValue, lastnameValue, emailValue, passValue, addressValue)
+                    AuthSession.user = User(firstnameValue, lastnameValue, emailValue, AuthSession.password, addressValue)
                     firstName.text = firstnameValue
                     lastName.text = lastnameValue
                     address.text = addressValue
@@ -67,6 +66,8 @@ class ProfileActivity: AppCompatActivity() {
             AuthSession.accessToken = ""
             AuthSession.userId = ""
             AuthSession.billAmount = ""
+            AuthSession.password = ""
+            AuthSession.user = User("", "", "", "", "")
             val loginIntent = Intent(this, LoginActivity::class.java)
             startActivity(loginIntent)
         }

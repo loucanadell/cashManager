@@ -15,7 +15,6 @@ import com.msc.cashmanager.service.UserService
 import org.json.JSONObject
 
 class UpdateActivity: AppCompatActivity() {
-    var check = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,7 +54,6 @@ class UpdateActivity: AppCompatActivity() {
             if (password.text.toString().trim().isNotBlank() && confirmPassword.text.toString().trim().isNotBlank()) {
                 if (password.text.toString() == confirmPassword.text.toString()) {
                     passwordValue = password.text.toString()
-                    check = true;
                 }
             }
             if (address.text.toString().trim().isNotBlank())
@@ -65,15 +63,9 @@ class UpdateActivity: AppCompatActivity() {
             rq.updateUser(userFinal)
             rq.requestQueue.addRequestFinishedListener(
                 RequestQueue.RequestFinishedListener<JSONObject>() {
-                    if (check === true) {
-                        Toast.makeText(applicationContext,"Please login with your new credentials", Toast.LENGTH_LONG).show()
-                        val loginIntent = Intent(this, LoginActivity::class.java)
-                        startActivity(loginIntent)
-                    } else {
-                        Toast.makeText(applicationContext,"Account successfully updated", Toast.LENGTH_SHORT).show()
-                        val homeIntent = Intent(this, HomeActivity::class.java)
-                        startActivity(homeIntent)
-                    }
+                    Toast.makeText(applicationContext,"Account successfully updated", Toast.LENGTH_SHORT).show()
+                    val homeIntent = Intent(this, HomeActivity::class.java)
+                    startActivity(homeIntent)
                 }
             )
         }

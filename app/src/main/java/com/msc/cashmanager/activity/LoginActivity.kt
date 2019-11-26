@@ -60,6 +60,7 @@ class LoginActivity : AppCompatActivity() {
                     val jwt = JWT(token.token)
                     AuthSession.userId = jwt.subject
                     AuthSession.accessToken = token.token
+                    AuthSession.password = password
                     val homeIntent = Intent(this, HomeActivity::class.java)
                     startActivity(homeIntent)
                 } else {
