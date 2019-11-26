@@ -2,6 +2,7 @@ package com.msc.cashmanager.model
 
 class AuthSession {
     companion object {
+        var IsLoggedIn = false
         var userId :String? = ""
         var accessToken :String = ""
         var billAmount = ""

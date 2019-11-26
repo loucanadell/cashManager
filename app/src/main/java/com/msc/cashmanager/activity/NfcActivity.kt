@@ -24,6 +24,10 @@ class NfcActivity : AppCompatActivity(), NfcAdapter.ReaderCallback {
 
     private var nfcAdapter: NfcAdapter? = null
     override fun onCreate(savedInstanceState: Bundle?) {
+        if (!AuthSession.IsLoggedIn) {
+            val loginIntent = Intent(this, LoginActivity::class.java)
+            startActivity(loginIntent)
+        }
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_nfc)

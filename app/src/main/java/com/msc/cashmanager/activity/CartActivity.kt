@@ -11,14 +11,18 @@ import com.msc.cashmanager.model.ProductAdapter
 import com.msc.cashmanager.R
 import com.msc.cashmanager.model.SelectedProduct
 import android.widget.Toast
+import com.msc.cashmanager.model.AuthSession
 
 
 class CartActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        if (!AuthSession.IsLoggedIn) {
+            val loginIntent = Intent(this, LoginActivity::class.java)
+            startActivity(loginIntent)
+        }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cart)
         val bottomNavBar = findViewById<BottomNavigationView>(R.id.activity_main_bottom_navigation)
-
         bottomNavBar.menu.getItem(2).isChecked = true;
         bottomNavBar.setOnNavigationItemSelectedListener { item -> updateMainFragment(item.itemId) }
         populateProductList()

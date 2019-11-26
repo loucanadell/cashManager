@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat.startActivity
+import androidx.core.view.isVisible
 import com.android.volley.RequestQueue
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.gson.Gson
@@ -46,12 +47,7 @@ class ProductAdapter(context: Context, products: ArrayList<SelectedProduct>) :
         delete.setOnClickListener {
             val rq = ProductService()
             rq.deleteArticle(product!!.id.toString())
-            rq.requestQueue.addRequestFinishedListener(
-                RequestQueue.RequestFinishedListener<String>() {
-
-
-                }
-            )
+            convertView.isVisible = false
         }
 
         name.text = product!!.name

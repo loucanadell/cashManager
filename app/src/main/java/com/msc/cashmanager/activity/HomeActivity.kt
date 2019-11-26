@@ -28,6 +28,10 @@ class HomeActivity: AppCompatActivity() {
     var bill: Float = 0F
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        if (!AuthSession.IsLoggedIn) {
+            val loginIntent = Intent(this, LoginActivity::class.java)
+            startActivity(loginIntent)
+        }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         bindingView()

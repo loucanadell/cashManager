@@ -5,9 +5,14 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.msc.cashmanager.R
+import com.msc.cashmanager.model.AuthSession
 
 class PaymentActivity :AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        if (!AuthSession.IsLoggedIn) {
+            val loginIntent = Intent(this, LoginActivity::class.java)
+            startActivity(loginIntent)
+        }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_payment)
         bindingView()

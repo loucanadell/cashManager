@@ -17,6 +17,10 @@ import org.json.JSONObject
 class UpdateActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        if (!AuthSession.IsLoggedIn) {
+            val loginIntent = Intent(this, LoginActivity::class.java)
+            startActivity(loginIntent)
+        }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update)
         val updateButton = findViewById<Button>(R.id.updateButton)

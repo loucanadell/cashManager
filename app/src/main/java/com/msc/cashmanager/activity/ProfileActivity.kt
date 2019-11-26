@@ -19,6 +19,10 @@ import org.json.JSONObject
 class ProfileActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        if (!AuthSession.IsLoggedIn) {
+            val loginIntent = Intent(this, LoginActivity::class.java)
+            startActivity(loginIntent)
+        }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
         val logoutButton = findViewById<Button>(R.id.logout)
@@ -68,6 +72,7 @@ class ProfileActivity: AppCompatActivity() {
             AuthSession.billAmount = ""
             AuthSession.password = ""
             AuthSession.user = User("", "", "", "", "")
+            AuthSession.IsLoggedIn = false
             val loginIntent = Intent(this, LoginActivity::class.java)
             startActivity(loginIntent)
         }

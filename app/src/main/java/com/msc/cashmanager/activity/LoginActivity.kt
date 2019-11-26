@@ -61,6 +61,7 @@ class LoginActivity : AppCompatActivity() {
                     AuthSession.userId = jwt.subject
                     AuthSession.accessToken = token.token
                     AuthSession.password = password
+                    AuthSession.IsLoggedIn = true;
                     val homeIntent = Intent(this, HomeActivity::class.java)
                     startActivity(homeIntent)
                 } else {

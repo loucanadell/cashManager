@@ -15,6 +15,10 @@ import com.msc.cashmanager.service.PaymentService
 
 class PaypalActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        if (!AuthSession.IsLoggedIn) {
+            val loginIntent = Intent(this, LoginActivity::class.java)
+            startActivity(loginIntent)
+        }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_paypal)
         val paymentButton :Button = findViewById(R.id.billButton)
