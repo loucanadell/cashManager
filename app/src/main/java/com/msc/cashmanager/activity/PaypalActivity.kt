@@ -11,7 +11,10 @@ import androidx.appcompat.app.AppCompatActivity
 import com.msc.cashmanager.R
 import com.msc.cashmanager.model.AuthSession
 import com.msc.cashmanager.model.Run
+import com.msc.cashmanager.model.User
 import com.msc.cashmanager.service.PaymentService
+import kotlinx.android.synthetic.main.activity_paypal.*
+import kotlinx.android.synthetic.main.layout_paypal.*
 
 class PaypalActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,6 +27,13 @@ class PaypalActivity: AppCompatActivity() {
         val paymentButton :Button = findViewById(R.id.billButton)
         paymentButton.text = "Payment " + AuthSession.billAmount
 
+        logout.setOnClickListener {
+            logout()
+        }
+        cancelPaypal.setOnClickListener {
+            val paymentIntent = Intent(this, PaymentActivity::class.java)
+            startActivity(paymentIntent)
+        }
         paymentButton.setOnClickListener {
             handlePayment()
         }
@@ -39,6 +49,7 @@ class PaypalActivity: AppCompatActivity() {
                 builder.setMessage("Validate !")
                 builder.setPositiveButton("Done") { _, _ ->
                     callToAPI()
+                    AuthSession.billAmount = ""
                     val homeIntent = Intent(this, HomeActivity::class.java)
                     startActivity(homeIntent)
                 }
@@ -67,5 +78,25 @@ class PaypalActivity: AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun logout() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("You're about to logout")
+        builder.setPositiveButton("Confirm") { _, _ ->
+            AuthSession.accessToken = ""
+            AuthSession.userId = ""
+            AuthSession.billAmount = ""
+            AuthSession.password = ""
+            AuthSession.user = User("", "", "", "", "")
+            AuthSession.IsLoggedIn = false
+            val loginIntent = Intent(this, LoginActivity::class.java)
+            startActivity(loginIntent)
+        }
+        builder.setNegativeButton("Cancel") { dialog, _ ->
+            dialog.cancel()
+        }
+        val alert: AlertDialog = builder.create()
+        alert.show()
     }
 }

@@ -72,5 +72,14 @@
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/loginViewsMargin"/>
 
+        <Button
+            style="@style/cancelButton"
+            android:id="@+id/cancelPaypal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:text="Cancel" />
+
     </LinearLayout>
 </androidx.cardview.widget.CardView>

@@ -36,7 +36,9 @@ class SignUpActivity: AppCompatActivity() {
                 password.text.toString().trim().isNotBlank() &&
                 confirmPassword.text.toString().trim().isNotBlank() &&
                 email.text.toString().trim().isNotBlank()) {
-                if (password.text.toString() == confirmPassword.text.toString()) {
+                if (!isEmailValid(email.text.toString()))
+                    Toast.makeText(applicationContext,"Email wrong format", Toast.LENGTH_SHORT).show()
+                else if (password.text.toString() == confirmPassword.text.toString()) {
                     createUser(username.text.toString(), lastname.text.toString(),
                         address.text.toString(), password.text.toString(), email.text.toString())
                 } else {
@@ -49,7 +51,11 @@ class SignUpActivity: AppCompatActivity() {
         }
     }
 
-    fun createUser(username :String, lastname :String, address :String, password :String, email :String) {
+    private fun isEmailValid(email: String): Boolean {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    }
+
+    private fun createUser(username :String, lastname :String, address :String, password :String, email :String) {
         val user = User(username, lastname, email, password, address)
         val rq = UserService()
         rq.signupRequest(user)

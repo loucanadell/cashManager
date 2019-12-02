@@ -5,18 +5,24 @@
         android:id="@+id/action_home"
         android:enabled="true"
         android:icon="@drawable/ic_home"
-        android:title="@string/bottom_navigation_menu_home"
+        android:title="Home"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_scanner"
         android:enabled="true"
         android:icon="@drawable/ic_barcode"
-        android:title="@string/bottom_navigation_menu_scan"
+        android:title="Scanner"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_cart"
         android:enabled="true"
         android:icon="@drawable/ic_cart"
-        android:title="@string/bottom_navigation_menu_cart"
+        android:title="Cart"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_profile"
+        android:enabled="true"
+        android:icon="@drawable/ic_profil"
+        android:title="Profile"
         app:showAsAction="ifRoom" />
 </menu>

@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.RequestQueue
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.msc.cashmanager.R
 import com.msc.cashmanager.model.AuthSession
 import com.msc.cashmanager.model.User
@@ -27,7 +28,10 @@ class ProfileActivity: AppCompatActivity() {
         setContentView(R.layout.activity_profile)
         val logoutButton = findViewById<Button>(R.id.logout)
         val updateButton = findViewById<Button>(R.id.updateButton)
+        val bottomNavBar = findViewById<BottomNavigationView>(R.id.activity_main_bottom_navigation)
 
+        bottomNavBar.menu.getItem(3).isChecked = true;
+        bottomNavBar.setOnNavigationItemSelectedListener { item -> updateMainFragment(item.itemId) }
         getUser()
         logoutButton.setOnClickListener {
             logout()
@@ -36,6 +40,13 @@ class ProfileActivity: AppCompatActivity() {
             val updateIntent = Intent(this, UpdateActivity::class.java)
             startActivity(updateIntent)
         }
+    }
+
+    override fun onResume() {
+        val bottomNavBar = findViewById<BottomNavigationView>(R.id.activity_main_bottom_navigation)
+
+        super.onResume()
+        bottomNavBar.menu.getItem(3).isChecked = true;
     }
 
     private fun getUser() {
@@ -61,6 +72,24 @@ class ProfileActivity: AppCompatActivity() {
                     email.text = emailValue
                 }
             })
+    }
+
+    private fun updateMainFragment(integer: Int): Boolean {
+        when (integer) {
+            R.id.action_home -> {
+                val homeIntent = Intent(this, HomeActivity::class.java)
+                startActivity(homeIntent)
+            }
+            R.id.action_scanner -> {
+                val scanIntent = Intent(this, ScannerActivity::class.java)
+                startActivity(scanIntent)
+            }
+            R.id.action_cart -> {
+                val cartIntent = Intent(this, CartActivity::class.java)
+                startActivity(cartIntent)
+            }
+        }
+        return true
     }
 
     private fun logout() {

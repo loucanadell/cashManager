@@ -12,11 +12,8 @@ import com.auth0.android.jwt.JWT
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.gson.Gson
-import com.msc.cashmanager.model.Product
 import com.msc.cashmanager.R
-import com.msc.cashmanager.model.AuthSession
-import com.msc.cashmanager.model.SelectedProduct
-import com.msc.cashmanager.model.Token
+import com.msc.cashmanager.model.*
 import com.msc.cashmanager.service.ProductService
 import com.msc.cashmanager.service.UserService
 import kotlinx.android.synthetic.main.activity_home.*
@@ -81,14 +78,13 @@ class HomeActivity: AppCompatActivity() {
         val cartButton = findViewById<Button>(R.id.cartButton);
         val scanButton = findViewById<Button>(R.id.scanButton);
         val paymentButton = findViewById<Button>(R.id.paymentButton);
-        val profileButton = findViewById<FloatingActionButton>(R.id.profile)
+        val logoutButton = findViewById<FloatingActionButton>(R.id.logout)
         val bottomNavBar = findViewById<BottomNavigationView>(R.id.activity_main_bottom_navigation)
 
         bottomNavBar.menu.getItem(0).isChecked = true;
         bottomNavBar.setOnNavigationItemSelectedListener { item -> updateMainFragment(item.itemId) }
-        profileButton.setOnClickListener {
-            val profileIntent = Intent(this, ProfileActivity::class.java)
-            startActivity(profileIntent)
+        logoutButton.setOnClickListener {
+            logout()
         }
         cartButton.setOnClickListener {
             val cartIntent = Intent(this, CartActivity::class.java)
@@ -111,6 +107,26 @@ class HomeActivity: AppCompatActivity() {
         }
     }
 
+    private fun logout() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("You're about to logout")
+        builder.setPositiveButton("Confirm") { _, _ ->
+            AuthSession.accessToken = ""
+            AuthSession.userId = ""
+            AuthSession.billAmount = ""
+            AuthSession.password = ""
+            AuthSession.user = User("", "", "", "", "")
+            AuthSession.IsLoggedIn = false
+            val loginIntent = Intent(this, LoginActivity::class.java)
+            startActivity(loginIntent)
+        }
+        builder.setNegativeButton("Cancel") { dialog, _ ->
+            dialog.cancel()
+        }
+        val alert: AlertDialog = builder.create()
+        alert.show()
+    }
+
     private fun updateMainFragment(integer: Int): Boolean {
         when (integer) {
             R.id.action_scanner -> {
@@ -121,6 +137,10 @@ class HomeActivity: AppCompatActivity() {
                 val cartIntent = Intent(this, CartActivity::class.java)
                 cartIntent.putExtra("cart", cart)
                 startActivity(cartIntent)
+            }
+            R.id.action_profile -> {
+                val profilIntent = Intent(this, ProfileActivity::class.java)
+                startActivity(profilIntent)
             }
         }
         return true

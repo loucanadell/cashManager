@@ -22,6 +22,20 @@
                 android:background="@drawable/login_shape_bk"
                 android:orientation="vertical">
 
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/logout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|end"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"
+                    android:src="@android:drawable/ic_lock_power_off"
+                    android:tint="#FFFFFF"
+                    app:backgroundTint="#03A9F4"
+                    app:fabCustomSize="40dp"
+                    app:hoveredFocusedTranslationZ="6dp"
+                    app:maxImageSize="30dp" />
+
                 <ImageView
                     style="@style/parent"
                     android:layout_height="180dp"

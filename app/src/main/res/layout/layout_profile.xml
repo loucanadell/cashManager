@@ -102,12 +102,12 @@
 
 
         <Button
-            style="@style/paymentButton"
             android:id="@+id/updateButton"
-            android:backgroundTint="#00BCD4"
-            android:text="Update user"
+            style="@style/paymentButton"
             android:layout_gravity="center"
-            android:layout_marginTop="40dp"/>
+            android:layout_marginTop="5dp"
+            android:backgroundTint="#00BCD4"
+            android:text="Update user" />
 
         <Button
             style="@style/cancelButton"

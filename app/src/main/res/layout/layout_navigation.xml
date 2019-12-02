@@ -15,11 +15,12 @@
         android:id="@+id/activity_main_bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
         android:background="@color/whiteCardColor"
+        app:labelVisibilityMode="labeled"
         app:itemIconTint="@drawable/bottom_navigation_colors"
         app:itemTextColor="@drawable/bottom_navigation_colors"
-        app:menu="@layout/bottom_navigation_menu"
-        android:layout_alignParentBottom="true" />
+        app:menu="@layout/bottom_navigation_menu" />
 
 </RelativeLayout>

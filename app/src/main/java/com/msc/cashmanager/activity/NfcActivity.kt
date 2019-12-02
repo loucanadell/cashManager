@@ -13,10 +13,12 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.msc.cashmanager.R
 import com.msc.cashmanager.model.AuthSession
 import com.msc.cashmanager.model.Product
 import com.msc.cashmanager.model.Run
+import com.msc.cashmanager.model.User
 import com.msc.cashmanager.service.PaymentService
 import com.msc.cashmanager.service.ProductService
 
@@ -33,7 +35,11 @@ class NfcActivity : AppCompatActivity(), NfcAdapter.ReaderCallback {
         setContentView(R.layout.activity_nfc)
         val billAmount = findViewById<TextView>(R.id.billAmount)
         val cancel = findViewById<Button>(R.id.cancelNfc)
+        val logoutButton = findViewById<FloatingActionButton>(R.id.logout)
 
+        logoutButton.setOnClickListener {
+            logout()
+        }
         billAmount.text = AuthSession.billAmount
         cancel.setOnClickListener {
             val paymentIntent = Intent(this, PaymentActivity::class.java)
@@ -65,6 +71,7 @@ class NfcActivity : AppCompatActivity(), NfcAdapter.ReaderCallback {
                     builder.setMessage("Validate !")
                     builder.setPositiveButton("Done") { _, _ ->
                         callToAPI()
+                        AuthSession.billAmount = ""
                         val homeIntent = Intent(this, HomeActivity::class.java)
                         startActivity(homeIntent)
                     }
@@ -77,9 +84,28 @@ class NfcActivity : AppCompatActivity(), NfcAdapter.ReaderCallback {
         }
     }
 
-
     private fun callToAPI() {
         val rq = PaymentService()
         rq.postPayment()
+    }
+
+    private fun logout() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("You're about to logout")
+        builder.setPositiveButton("Confirm") { _, _ ->
+            AuthSession.accessToken = ""
+            AuthSession.userId = ""
+            AuthSession.billAmount = ""
+            AuthSession.password = ""
+            AuthSession.user = User("", "", "", "", "")
+            AuthSession.IsLoggedIn = false
+            val loginIntent = Intent(this, LoginActivity::class.java)
+            startActivity(loginIntent)
+        }
+        builder.setNegativeButton("Cancel") { dialog, _ ->
+            dialog.cancel()
+        }
+        val alert: AlertDialog = builder.create()
+        alert.show()
     }
 }

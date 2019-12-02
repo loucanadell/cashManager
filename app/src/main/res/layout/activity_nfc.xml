@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     style="@style/loginParent"
     tools:context="com.msc.cashmanager.activity.LoginActivity">
@@ -20,6 +21,20 @@
                 android:layout_weight="3"
                 android:background="@drawable/login_shape_bk"
                 android:orientation="vertical">
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/logout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|end"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"
+                    android:src="@android:drawable/ic_lock_power_off"
+                    android:tint="#FFFFFF"
+                    app:backgroundTint="#03A9F4"
+                    app:fabCustomSize="40dp"
+                    app:hoveredFocusedTranslationZ="6dp"
+                    app:maxImageSize="30dp" />
 
                 <ImageView
                     style="@style/parent"
