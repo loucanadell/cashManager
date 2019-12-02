@@ -12,10 +12,16 @@ import com.msc.cashmanager.model.ProductAdapter
 import com.msc.cashmanager.R
 import com.msc.cashmanager.model.SelectedProduct
 import android.widget.Toast
+import com.android.volley.RequestQueue
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.gson.Gson
 import com.msc.cashmanager.model.AuthSession
 import com.msc.cashmanager.model.User
+import com.msc.cashmanager.service.UserService
+import kotlinx.android.synthetic.main.activity_cart.*
+import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.layout_cart.*
+import org.json.JSONObject
 
 
 class CartActivity: AppCompatActivity() {
@@ -33,6 +39,9 @@ class CartActivity: AppCompatActivity() {
 
         logoutButton.setOnClickListener {
             logout()
+        }
+        refreshCart.setOnClickListener {
+            refreshList()
         }
         paymentButton.setOnClickListener {
             val cart = intent.getParcelableArrayListExtra<SelectedProduct>("cart")
@@ -64,6 +73,35 @@ class CartActivity: AppCompatActivity() {
         val adapter = ProductAdapter(this, cart)
         list_view.adapter = adapter
         list_view.deferNotifyDataSetChanged()
+    }
+
+    private fun refreshList() {
+        val rq = UserService()
+        var cart = ArrayList<SelectedProduct>()
+        rq.getCurrentCart()
+        rq.requestQueue.addRequestFinishedListener(
+            RequestQueue.RequestFinishedListener<JSONObject>() {
+                if (rq.result != "") {
+                    val obj = JSONObject(rq.result)
+                    AuthSession.idCart = obj.getString("id")
+                    val articlesArray = obj.getJSONArray("articles")
+                    for (i in 0 until articlesArray.length()) {
+                        val item = articlesArray.getJSONObject(i)
+                        val product = Gson().fromJson(item.toString(), SelectedProduct::class.java)
+                        cart.add(
+                            SelectedProduct(
+                                product.id,
+                                product.name.toString(),
+                                product.price
+                            )
+                        )
+                    }
+                    val adapter = ProductAdapter(this, cart)
+                    list_view.adapter = adapter
+                    list_view.deferNotifyDataSetChanged()
+                }
+            }
+        )
     }
 
     private fun updateMainFragment(integer: Int): Boolean {

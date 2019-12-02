@@ -44,6 +44,7 @@
         android:layout_height="32dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
+        android:layout_marginTop="20dp"
         android:src="@android:drawable/ic_delete"
         app:backgroundTint="#FFFFFF"
         app:fabCustomSize="30dp"

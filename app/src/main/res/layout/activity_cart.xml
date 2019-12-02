@@ -64,14 +64,33 @@
             <include
                 android:descendantFocusability="blocksDescendants"
                 layout="@layout/layout_cart" />
-
-                <Button
-                    style="@style/paymentButton"
-                    android:id="@+id/paymentButton"
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center">
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/refreshCart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center|bottom"
-                    android:text="Payment" />
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_gravity="center"
+                    android:src="@android:drawable/stat_notify_sync"
+                    android:tint="#FFFFFF"
+                    app:backgroundTint="#03A9F4"
+                    app:fabCustomSize="40dp"
+                    app:hoveredFocusedTranslationZ="6dp"
+                    app:maxImageSize="30dp" />
+
+                    <Button
+                        style="@style/paymentButton"
+                        android:id="@+id/paymentButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|bottom"
+                        android:text="Payment" />
+            </LinearLayout>
 
         </LinearLayout>
     </RelativeLayout>
