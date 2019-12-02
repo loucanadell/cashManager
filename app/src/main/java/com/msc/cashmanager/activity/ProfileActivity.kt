@@ -11,6 +11,7 @@ import com.android.volley.RequestQueue
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.msc.cashmanager.R
 import com.msc.cashmanager.model.AuthSession
+import com.msc.cashmanager.model.SelectedProduct
 import com.msc.cashmanager.model.User
 import com.msc.cashmanager.service.UserService
 import kotlinx.android.synthetic.main.activity_home.*
@@ -20,6 +21,7 @@ import kotlinx.android.synthetic.main.layout_signup.*
 import org.json.JSONObject
 
 class ProfileActivity: AppCompatActivity() {
+    var cart = ArrayList<SelectedProduct>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         if (!AuthSession.IsLoggedIn) {
@@ -30,6 +32,7 @@ class ProfileActivity: AppCompatActivity() {
         setContentView(R.layout.activity_profile)
         val logoutButton = findViewById<Button>(R.id.logout)
 
+        cart = intent.getParcelableArrayListExtra<SelectedProduct>("cart")
         activity_main_bottom_navigation.menu.getItem(3).isChecked = true;
         activity_main_bottom_navigation.setOnNavigationItemSelectedListener { item -> updateMainFragment(item.itemId) }
         getUser()
@@ -86,6 +89,7 @@ class ProfileActivity: AppCompatActivity() {
             }
             R.id.action_cart -> {
                 val cartIntent = Intent(this, CartActivity::class.java)
+                cartIntent.putExtra("cart", cart)
                 startActivity(cartIntent)
             }
         }

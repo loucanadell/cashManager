@@ -26,6 +26,8 @@ import org.json.JSONObject
 
 
 class CartActivity: AppCompatActivity() {
+    var cart = ArrayList<SelectedProduct>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         if (!AuthSession.IsLoggedIn) {
             val loginIntent = Intent(this, LoginActivity::class.java)
@@ -63,7 +65,6 @@ class CartActivity: AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         activity_main_bottom_navigation.menu.getItem(2).isChecked = true;
-        populateProductList();
     }
 
     private fun populateProductList() {
@@ -75,7 +76,6 @@ class CartActivity: AppCompatActivity() {
 
     private fun refreshList() {
         val rq = UserService()
-        var cart = ArrayList<SelectedProduct>()
         rq.getCurrentCart()
         rq.requestQueue.addRequestFinishedListener(
             RequestQueue.RequestFinishedListener<JSONObject>() {
@@ -114,6 +114,7 @@ class CartActivity: AppCompatActivity() {
             }
             R.id.action_profile -> {
                 val profilIntent = Intent(this, ProfileActivity::class.java)
+                profilIntent.putExtra("cart", cart)
                 startActivity(profilIntent)
             }
         }

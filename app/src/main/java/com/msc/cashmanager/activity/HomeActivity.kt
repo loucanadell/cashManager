@@ -136,6 +136,7 @@ class HomeActivity: AppCompatActivity() {
             }
             R.id.action_profile -> {
                 val profilIntent = Intent(this, ProfileActivity::class.java)
+                profilIntent.putExtra("cart", cart)
                 startActivity(profilIntent)
             }
         }
