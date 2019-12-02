@@ -17,6 +17,8 @@ import com.msc.cashmanager.model.*
 import com.msc.cashmanager.service.ProductService
 import com.msc.cashmanager.service.UserService
 import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.layout_home.*
+import kotlinx.android.synthetic.main.layout_navigation.*
 import org.json.JSONObject
 
 class HomeActivity: AppCompatActivity() {
@@ -37,10 +39,8 @@ class HomeActivity: AppCompatActivity() {
 
 
     override fun onResume() {
-        val bottomNavBar = findViewById<BottomNavigationView>(R.id.activity_main_bottom_navigation)
-
         super.onResume()
-        bottomNavBar.menu.getItem(0).isChecked = true;
+        activity_main_bottom_navigation.menu.getItem(0).isChecked = true;
     }
 
     private fun getCurrentCart() {
@@ -75,14 +75,10 @@ class HomeActivity: AppCompatActivity() {
     }
 
     private fun bindingView() {
-        val cartButton = findViewById<Button>(R.id.cartButton);
-        val scanButton = findViewById<Button>(R.id.scanButton);
-        val paymentButton = findViewById<Button>(R.id.paymentButton);
         val logoutButton = findViewById<FloatingActionButton>(R.id.logout)
-        val bottomNavBar = findViewById<BottomNavigationView>(R.id.activity_main_bottom_navigation)
 
-        bottomNavBar.menu.getItem(0).isChecked = true;
-        bottomNavBar.setOnNavigationItemSelectedListener { item -> updateMainFragment(item.itemId) }
+        activity_main_bottom_navigation.menu.getItem(0).isChecked = true;
+        activity_main_bottom_navigation.setOnNavigationItemSelectedListener { item -> updateMainFragment(item.itemId) }
         logoutButton.setOnClickListener {
             logout()
         }

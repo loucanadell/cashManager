@@ -15,6 +15,7 @@ import com.msc.cashmanager.model.AuthSession
 import com.msc.cashmanager.model.Product
 import com.msc.cashmanager.model.Token
 import com.msc.cashmanager.service.UserService
+import kotlinx.android.synthetic.main.layout_settings.*
 import org.json.JSONObject
 
 
@@ -26,13 +27,8 @@ class LoginActivity : AppCompatActivity() {
         bindingView()
     }
 
-    fun bindingView() {
-        val registerButton = findViewById<Button>(R.id.register);
-        val signupButton = findViewById<Button>(R.id.signup);
-        val password = findViewById<EditText>(R.id.password);
-        val email = findViewById<EditText>(R.id.email);
-
-        registerButton.setOnClickListener{
+    private fun bindingView() {
+        register.setOnClickListener{
             if (password.text.toString().trim().isNotBlank() &&
                 email.text.toString().trim().isNotBlank()) {
                 login(email.text.toString(), password.text.toString())
@@ -42,7 +38,7 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        signupButton.setOnClickListener{
+        signup.setOnClickListener{
             val signupIntent = Intent(this, SignUpActivity::class.java)
             startActivity(signupIntent)
         }

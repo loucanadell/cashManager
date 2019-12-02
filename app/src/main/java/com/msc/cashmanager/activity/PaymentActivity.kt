@@ -9,6 +9,8 @@ import com.msc.cashmanager.R
 import com.msc.cashmanager.model.AuthSession
 import com.msc.cashmanager.model.User
 import kotlinx.android.synthetic.main.activity_payment.*
+import kotlinx.android.synthetic.main.layout_nfc.*
+import kotlinx.android.synthetic.main.layout_payment.*
 
 class PaymentActivity :AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,9 +24,6 @@ class PaymentActivity :AppCompatActivity() {
     }
 
     private fun bindingView() {
-        val paypalButton = findViewById<Button>(R.id.paypalButton);
-        val nfcButton = findViewById<Button>(R.id.nfcButton);
-
         logout.setOnClickListener {
             logout()
         }
@@ -36,6 +35,11 @@ class PaymentActivity :AppCompatActivity() {
         nfcButton.setOnClickListener {
             val nfcIntent = Intent(this, NfcActivity::class.java)
             startActivity(nfcIntent)
+        }
+
+        cancelPayment.setOnClickListener {
+            val homeIntent = Intent(this, HomeActivity::class.java)
+            startActivity(homeIntent)
         }
     }
 

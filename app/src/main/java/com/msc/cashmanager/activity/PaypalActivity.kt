@@ -24,8 +24,8 @@ class PaypalActivity: AppCompatActivity() {
         }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_paypal)
-        val paymentButton :Button = findViewById(R.id.billButton)
-        paymentButton.text = "Payment " + AuthSession.billAmount
+        val textButton = "Payment " + AuthSession.billAmount
+        billButton.text = textButton
 
         logout.setOnClickListener {
             logout()

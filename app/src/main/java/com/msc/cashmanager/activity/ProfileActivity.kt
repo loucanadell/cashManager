@@ -14,6 +14,8 @@ import com.msc.cashmanager.model.AuthSession
 import com.msc.cashmanager.model.User
 import com.msc.cashmanager.service.UserService
 import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.layout_navigation.*
+import kotlinx.android.synthetic.main.layout_profile.*
 import kotlinx.android.synthetic.main.layout_signup.*
 import org.json.JSONObject
 
@@ -27,11 +29,9 @@ class ProfileActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
         val logoutButton = findViewById<Button>(R.id.logout)
-        val updateButton = findViewById<Button>(R.id.updateButton)
-        val bottomNavBar = findViewById<BottomNavigationView>(R.id.activity_main_bottom_navigation)
 
-        bottomNavBar.menu.getItem(3).isChecked = true;
-        bottomNavBar.setOnNavigationItemSelectedListener { item -> updateMainFragment(item.itemId) }
+        activity_main_bottom_navigation.menu.getItem(3).isChecked = true;
+        activity_main_bottom_navigation.setOnNavigationItemSelectedListener { item -> updateMainFragment(item.itemId) }
         getUser()
         logoutButton.setOnClickListener {
             logout()

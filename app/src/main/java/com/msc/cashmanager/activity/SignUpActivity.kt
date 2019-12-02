@@ -11,6 +11,9 @@ import com.android.volley.RequestQueue
 import com.msc.cashmanager.R
 import com.msc.cashmanager.model.User
 import com.msc.cashmanager.service.UserService
+import kotlinx.android.synthetic.main.layout_settings.*
+import kotlinx.android.synthetic.main.layout_settings.signup
+import kotlinx.android.synthetic.main.layout_signup.*
 import org.json.JSONObject
 
 class SignUpActivity: AppCompatActivity() {
@@ -20,16 +23,11 @@ class SignUpActivity: AppCompatActivity() {
         bindingView()
     }
 
-    fun bindingView() {
-        val signupButton = findViewById<Button>(R.id.signup)
-        val username = findViewById<EditText>(R.id.username)
-        val lastname = findViewById<EditText>(R.id.lastname)
-        val address = findViewById<EditText>(R.id.address)
+    private fun bindingView() {
         val password = findViewById<EditText>(R.id.password)
-        val confirmPassword = findViewById<EditText>(R.id.confirmPassword)
         val email = findViewById<EditText>(R.id.email)
 
-        signupButton.setOnClickListener{
+        signup.setOnClickListener{
             if (lastname.text.toString().trim().isNotBlank() &&
                 username.text.toString().trim().isNotBlank() &&
                 address.text.toString().trim().isNotBlank() &&

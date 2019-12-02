@@ -12,6 +12,7 @@ import com.msc.cashmanager.R
 import com.msc.cashmanager.model.AuthSession
 import com.msc.cashmanager.model.User
 import com.msc.cashmanager.service.UserService
+import kotlinx.android.synthetic.main.layout_update.*
 import org.json.JSONObject
 
 class UpdateActivity: AppCompatActivity() {
@@ -23,14 +24,6 @@ class UpdateActivity: AppCompatActivity() {
         }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update)
-        val updateButton = findViewById<Button>(R.id.updateButton)
-        val cancelButton = findViewById<Button>(R.id.cancelButton)
-        val username = findViewById<EditText>(R.id.username)
-        val lastname = findViewById<EditText>(R.id.lastname)
-        val address = findViewById<EditText>(R.id.address)
-        val password = findViewById<EditText>(R.id.password)
-        val confirmPassword = findViewById<EditText>(R.id.confirmPassword)
-        val email = findViewById<EditText>(R.id.email)
 
         val user = AuthSession.user
         var usernameValue = user.username

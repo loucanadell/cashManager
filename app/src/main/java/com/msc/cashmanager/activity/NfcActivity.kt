@@ -21,6 +21,8 @@ import com.msc.cashmanager.model.Run
 import com.msc.cashmanager.model.User
 import com.msc.cashmanager.service.PaymentService
 import com.msc.cashmanager.service.ProductService
+import kotlinx.android.synthetic.main.activity_nfc.*
+import kotlinx.android.synthetic.main.layout_nfc.*
 
 class NfcActivity : AppCompatActivity(), NfcAdapter.ReaderCallback {
 
@@ -33,15 +35,13 @@ class NfcActivity : AppCompatActivity(), NfcAdapter.ReaderCallback {
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_nfc)
-        val billAmount = findViewById<TextView>(R.id.billAmount)
-        val cancel = findViewById<Button>(R.id.cancelNfc)
         val logoutButton = findViewById<FloatingActionButton>(R.id.logout)
 
         logoutButton.setOnClickListener {
             logout()
         }
         billAmount.text = AuthSession.billAmount
-        cancel.setOnClickListener {
+        cancelNfc.setOnClickListener {
             val paymentIntent = Intent(this, PaymentActivity::class.java)
             startActivity(paymentIntent)
         }
