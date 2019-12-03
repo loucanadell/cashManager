@@ -16,7 +16,7 @@ import com.msc.cashmanager.model.User
 import org.json.JSONObject
 import java.io.File
 
-class ProductService: AppCompatActivity() {
+class ProductService {
     var result = ""
     var url :String = "http://3.81.154.236:8080/article/"
 
